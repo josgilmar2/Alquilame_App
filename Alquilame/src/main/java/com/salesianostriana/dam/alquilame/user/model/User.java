@@ -52,8 +52,7 @@ public class User implements UserDetails {
     @Builder.Default
     private LocalDateTime lastPasswordChangeAt = LocalDateTime.now();
 
-    /*@ElementCollection(fetch = FetchType.EAGER)
-    private List<Dwelling> favourites;*/
+    //private List<Dwelling> favourites;
 
     @Builder.Default
     private boolean accountNonExpired = true;

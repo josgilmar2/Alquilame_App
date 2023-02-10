@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.alquilame.dwelling.model;
 
 import com.salesianostriana.dam.alquilame.city.model.City;
+import com.salesianostriana.dam.alquilame.user.model.User;
 import lombok.*;
 
 import javax.persistence.*;
