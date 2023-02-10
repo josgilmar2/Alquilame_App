@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.alquilame.user.model;
 
+import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
+import com.salesianostriana.dam.alquilame.user.database.EnumSetUserRoleConverter;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
@@ -11,9 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -41,9 +41,9 @@ public class User implements UserDetails {
     @Column(unique = true, updatable = false)
     private String username;
 
-    private String address, phoneNumber, email, password, fullName;
+    private String address, phoneNumber, email, password, avatar, fullName;
 
-    @Convert(converter = UserRole.class)
+    @Convert(converter = EnumSetUserRoleConverter.class)
     private EnumSet<UserRole> roles;
 
     @CreatedDate
@@ -51,6 +51,9 @@ public class User implements UserDetails {
 
     @Builder.Default
     private LocalDateTime lastPasswordChangeAt = LocalDateTime.now();
+
+    /*@ElementCollection(fetch = FetchType.EAGER)
+    private List<Dwelling> favourites;*/
 
     @Builder.Default
     private boolean accountNonExpired = true;

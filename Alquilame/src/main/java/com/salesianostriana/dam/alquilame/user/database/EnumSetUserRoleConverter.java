@@ -28,7 +28,7 @@ public class EnumSetUserRoleConverter implements AttributeConverter<EnumSet<User
         if(dbData != null) {
             if(!dbData.isBlank()) {
                 return Arrays.stream(dbData.split(SEPARATOR))
-                        .map(s -> UserRole.valueOf(s))
+                        .map(UserRole::valueOf)
                         .collect(Collectors.toCollection(() -> EnumSet.noneOf(UserRole.class)));
             }
         }
