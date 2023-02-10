@@ -18,8 +18,13 @@ public class City {
 
     private String name;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
     @Builder.Default
     private List<Dwelling> dwellings = new ArrayList<>();
+
+    @PreRemove
+    public void setNullCities() {
+        dwellings.forEach(dwelling -> dwelling.setCity(null));
+    }
 
 }
