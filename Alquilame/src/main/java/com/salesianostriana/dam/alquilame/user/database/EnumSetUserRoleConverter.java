@@ -15,7 +15,7 @@ public class EnumSetUserRoleConverter implements AttributeConverter<EnumSet<User
 
     @Override
     public String convertToDatabaseColumn(EnumSet<UserRole> userRoles) {
-        if(userRoles.isEmpty()) {
+        if(!userRoles.isEmpty()) {
             return userRoles.stream()
                     .map(UserRole::name)
                     .collect(Collectors.joining(SEPARATOR));
