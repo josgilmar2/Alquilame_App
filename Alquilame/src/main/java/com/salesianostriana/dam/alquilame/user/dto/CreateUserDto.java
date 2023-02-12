@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.alquilame.user.dto;
 
+import com.salesianostriana.dam.alquilame.user.model.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

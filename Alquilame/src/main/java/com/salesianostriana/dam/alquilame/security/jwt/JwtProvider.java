@@ -46,7 +46,7 @@ public class JwtProvider {
 
         Date tokenExpirationDay = Date.from(LocalDateTime
                 .now()
-                .plusSeconds(jwtLifeInMinutes)
+                .plusMinutes(jwtLifeInMinutes)
                 .atZone(ZoneId.systemDefault())
                 .toInstant()
         );

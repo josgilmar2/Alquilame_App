@@ -2,6 +2,7 @@ package com.salesianostriana.dam.alquilame.error;
 
 import com.salesianostriana.dam.alquilame.error.model.impl.ApiErrorImpl;
 import com.salesianostriana.dam.alquilame.error.model.impl.ApiValidationSubError;
+import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.JwtTokenException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,7 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ AuthenticationException.class })
     public ResponseEntity<?> handleAuthenticationException(AuthenticationException ex, WebRequest request) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .header("WWW-Authenticate", "Bearer")
-                .body(buildApiError(ex.getMessage(), request, HttpStatus.UNAUTHORIZED));
+        return buildApiError(ex.getMessage(), request, HttpStatus.UNAUTHORIZED);
 
     }
 
@@ -55,6 +54,11 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler({UsernameNotFoundException.class})
     public ResponseEntity<?> handleUserNotExistsException(UsernameNotFoundException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler({EmptyListNotFoundException.class})
+    public ResponseEntity<?> handleEmptyListNotFoundException(EmptyListNotFoundException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
     }
 
     private final ResponseEntity<Object> buildApiError(String message, WebRequest request, HttpStatus status) {
