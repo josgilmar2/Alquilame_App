@@ -11,6 +11,10 @@ import java.util.List;
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
 @Builder
+@NamedEntityGraph(name = "city-with-dwelling",
+        attributeNodes = {
+                @NamedAttributeNode(value = "dwellings")
+        })
 public class City {
 
     @Id @GeneratedValue
