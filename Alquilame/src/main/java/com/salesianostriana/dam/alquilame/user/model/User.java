@@ -52,6 +52,10 @@ public class User implements UserDetails {
     @Builder.Default
     private LocalDateTime lastPasswordChangeAt = LocalDateTime.now();
 
+    @OneToMany(mappedBy = "user")
+    @Builder.Default
+    private List<Dwelling> dwellings = new ArrayList<>();
+
     //private List<Dwelling> favourites;
 
     @Builder.Default

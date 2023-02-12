@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.EnumSet;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -44,6 +45,10 @@ public class UserService {
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findFirstByUsername(username);
+    }
+
+    public Optional<User> findById(UUID id) {
+        return userRepository.findById(id);
     }
 
 }

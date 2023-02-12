@@ -37,4 +37,8 @@ public class Dwelling {
     @JoinColumn(name = "city_id", foreignKey = @ForeignKey(name = "FK_DWELLING_CITY"))
     private City city;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_DWELLING_USER"))
+    private User user;
+
 }
