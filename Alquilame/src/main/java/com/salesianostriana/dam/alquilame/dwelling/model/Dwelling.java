@@ -31,7 +31,7 @@ public class Dwelling {
 
     private int numBedrooms, numBathrooms;
 
-    private boolean hasElevator, hasPool, hasTerrace;
+    private boolean hasElevator, hasPool, hasTerrace, hasGarage;
 
     @ManyToOne
     @JoinColumn(name = "city_id", foreignKey = @ForeignKey(name = "FK_DWELLING_CITY"))
