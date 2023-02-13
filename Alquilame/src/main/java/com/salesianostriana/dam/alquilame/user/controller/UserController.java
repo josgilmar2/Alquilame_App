@@ -33,4 +33,6 @@ public class UserController {
         return UserResponse.fromUser(result);
     }
 
+    //VER VIVIENDAS FAVORITAS DEL USUARIO, PUT, DELETE, GET ID USUARIO
+
 }
