@@ -2,8 +2,7 @@ package com.salesianostriana.dam.alquilame.error;
 
 import com.salesianostriana.dam.alquilame.error.model.impl.ApiErrorImpl;
 import com.salesianostriana.dam.alquilame.error.model.impl.ApiValidationSubError;
-import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
-import com.salesianostriana.dam.alquilame.exception.JwtTokenException;
+import com.salesianostriana.dam.alquilame.exception.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +57,21 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({EmptyListNotFoundException.class})
     public ResponseEntity<?> handleEmptyListNotFoundException(EmptyListNotFoundException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({UserNotFoundException.class})
+    public ResponseEntity<?> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({UserDwellingsNotFoundException.class})
+    public ResponseEntity<?> handleUserDwellingsNotFoundException(UserDwellingsNotFoundException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({CityNotFoundException.class})
+    public ResponseEntity<?> handleCityNotFoundException(CityNotFoundException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
     }
 

@@ -62,9 +62,9 @@ public class UserService {
     }
 
     public Page<UserResponse> search(List<SearchCriteria> params, Pageable pageable) {
-        GenericSpecificationBuilder<User> productSpeceficationBuilder =
+        GenericSpecificationBuilder<User> userGenericSpecificationBuilder =
                 new GenericSpecificationBuilder<>(params, User.class);
-        Specification<User> specification = productSpeceficationBuilder.build();
+        Specification<User> specification = userGenericSpecificationBuilder.build();
         return userRepository.findAll(specification, pageable).map(UserResponse::fromUser);
     }
 
