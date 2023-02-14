@@ -1,5 +1,11 @@
 package com.salesianostriana.dam.alquilame.dwelling.service;
 
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingAccessDeniedException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.FavouriteAlreadyInListException;
+import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import com.salesianostriana.dam.alquilame.province.model.Province;
 import com.salesianostriana.dam.alquilame.province.service.ProvinceService;
 import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;

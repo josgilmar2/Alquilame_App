@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.alquilame.exception;
+package com.salesianostriana.dam.alquilame.exception.user;
 
 import java.util.UUID;
 

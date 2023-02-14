@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.alquilame.security.jwt;
 
-import com.salesianostriana.dam.alquilame.exception.JwtTokenException;
+import com.salesianostriana.dam.alquilame.exception.jwt.JwtTokenException;
 import com.salesianostriana.dam.alquilame.user.model.User;
 import com.salesianostriana.dam.alquilame.user.service.UserService;
 import lombok.RequiredArgsConstructor;

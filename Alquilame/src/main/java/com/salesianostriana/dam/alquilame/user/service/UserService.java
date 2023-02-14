@@ -1,8 +1,7 @@
 package com.salesianostriana.dam.alquilame.user.service;
 
 import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
-import com.salesianostriana.dam.alquilame.exception.UserNotFoundException;
-import com.salesianostriana.dam.alquilame.page.dto.PageDto;
+import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import com.salesianostriana.dam.alquilame.search.spec.GenericSpecificationBuilder;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteria;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteriaExtractor;

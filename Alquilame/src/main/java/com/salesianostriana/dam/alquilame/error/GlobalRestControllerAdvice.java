@@ -3,6 +3,14 @@ package com.salesianostriana.dam.alquilame.error;
 import com.salesianostriana.dam.alquilame.error.model.impl.ApiErrorImpl;
 import com.salesianostriana.dam.alquilame.error.model.impl.ApiValidationSubError;
 import com.salesianostriana.dam.alquilame.exception.*;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingAccessDeniedException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestDeleteException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.FavouriteAlreadyInListException;
+import com.salesianostriana.dam.alquilame.exception.jwt.JwtTokenException;
+import com.salesianostriana.dam.alquilame.exception.province.ProvinceBadRequestDeleteException;
+import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,6 +95,11 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(FavouriteAlreadyInListException.class)
     public ResponseEntity<?> handleFavouriteAlreadyInListException(FavouriteAlreadyInListException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ProvinceBadRequestDeleteException.class)
+    public ResponseEntity<?> handleProvinceBadRequestDeleteException(ProvinceBadRequestDeleteException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 

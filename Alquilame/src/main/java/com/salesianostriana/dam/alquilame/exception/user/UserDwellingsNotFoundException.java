@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.alquilame.exception;
+package com.salesianostriana.dam.alquilame.exception.user;
 
 public class UserDwellingsNotFoundException extends RuntimeException{
 
