@@ -51,10 +51,10 @@ public class DwellingService {
                 .orElseThrow(() -> new DwellingNotFoundException(id));
     }
 
-    public Page<AllDwellingResponse> findUserDwellings(String username, Pageable pageable) {
-        Page<AllDwellingResponse> result = dwellingRepository.findAllUserDwellings(username, pageable);
+    public Page<AllDwellingResponse> findUserDwellings(User user, Pageable pageable) {
+        Page<AllDwellingResponse> result = dwellingRepository.findAllUserDwellings(user.getUsername(), pageable);
         if(result.isEmpty())
-            throw new UserDwellingsNotFoundException(username);
+            throw new UserDwellingsNotFoundException(user.getUsername());
         return result;
     }
 
@@ -84,5 +84,30 @@ public class DwellingService {
         return dwellingRepository.save(result);
 
     }
+    public Dwelling editDwelling(Long id, DwellingRequest dto, User user) {
+
+        City toEdit = cityService.findById(dto.getProvinceId());
+
+        return dwellingRepository.findById(id)
+                .map(dwelling -> {
+                    dwelling.setName(dto.getName());
+                    dwelling.setAddress(dto.getAddress());
+                    dwelling.setDescription(dto.getDescription());
+                    dwelling.setImage(dto.getImage());
+                    dwelling.setType(dto.getType());
+                    dwelling.setPrice(dto.getPrice());
+                    dwelling.setM2(dto.getM2());
+                    dwelling.setNumBathrooms(dto.getNumBathrooms());
+                    dwelling.setNumBedrooms(dto.getNumBedrooms());
+                    dwelling.setHasElevator(dto.isHasElevator());
+                    dwelling.setHasTerrace(dto.isHasTerrace());
+                    dwelling.setHasGarage(dto.isHasGarage());
+                    dwelling.setHasPool(dto.isHasPool());
+                    dwelling.setCity(toEdit);
+                    dwelling.setUser(user);
+                    return dwellingRepository.save(dwelling);
+                }).orElseThrow(() -> new DwellingNotFoundException(id));
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.salesianostriana.dam.alquilame.dwelling.repo;
 
 import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
 import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
+import com.salesianostriana.dam.alquilame.user.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

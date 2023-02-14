@@ -22,7 +22,10 @@ import java.util.stream.Collectors;
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
 @Builder
-@EntityListeners(AuditingEntityListener.class)
+@NamedEntityGraph(name = "user-with-dwelling",
+        attributeNodes = {
+                @NamedAttributeNode(value = "dwellings")
+        })
 public class User implements UserDetails {
 
     @Id @GeneratedValue(generator = "UUID")

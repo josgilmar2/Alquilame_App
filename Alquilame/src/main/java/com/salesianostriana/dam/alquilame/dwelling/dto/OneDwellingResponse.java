@@ -2,8 +2,6 @@ package com.salesianostriana.dam.alquilame.dwelling.dto;
 
 import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
 import com.salesianostriana.dam.alquilame.dwelling.model.Type;
-import com.salesianostriana.dam.alquilame.user.dto.UserDwellingResponse;
-import com.salesianostriana.dam.alquilame.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,7 @@ public class OneDwellingResponse extends AllDwellingResponse{
     private double m2;
     private int numBedrooms, numBathrooms;
     private boolean hasElevator, hasPool, hasTerrace, hasGarage;
-    private UserDwellingResponse user;
+    private String owner;
 
     public static OneDwellingResponse of (Dwelling dwelling) {
         return OneDwellingResponse.builder()
@@ -38,7 +36,7 @@ public class OneDwellingResponse extends AllDwellingResponse{
                 .hasPool(dwelling.isHasPool())
                 .hasTerrace(dwelling.isHasTerrace())
                 .hasGarage(dwelling.isHasGarage())
-                .user(UserDwellingResponse.of(dwelling.getUser()))
+                .owner(dwelling.getUser().getFullName())
                 .build();
     }
 
