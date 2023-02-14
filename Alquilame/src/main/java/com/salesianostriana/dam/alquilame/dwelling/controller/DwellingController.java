@@ -65,12 +65,37 @@ public class DwellingController {
         return OneDwellingResponse.of(edited);
     }
 
-    /*@DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteDwelling(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        dwellingService.deleteOneDwelling(id, user);
 
-    }*/
+        return ResponseEntity.noContent().build();
+    }
 
-    //DELETE, POST FAVORITO, GET CIUDADES
+    @PostMapping("/{id}/favourite")
+    public ResponseEntity<OneDwellingResponse> markAsFavourite(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        Dwelling newFavourite = dwellingService.doFavourite(id, user);
 
+        URI createdURI = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newFavourite.getId()).toUri();
+
+        return ResponseEntity.created(createdURI)
+                .body(OneDwellingResponse.of(newFavourite));
+    }
+
+    @DeleteMapping("/{id}/favourite")
+    public ResponseEntity<?> deleteFavourite(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        dwellingService.deleteFavourite(id, user);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/province/{id}")
+    public PageDto<AllDwellingResponse> getDwellingsByProvince(@PathVariable Long id,
+                                                               @PageableDefault(size = 20) Pageable pageable) {
+        return new PageDto<>(dwellingService.findByProvinceId(id, pageable));
+    }
 
 }

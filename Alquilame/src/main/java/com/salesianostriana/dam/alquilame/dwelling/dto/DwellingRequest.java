@@ -19,6 +19,5 @@ public class DwellingRequest {
     private int numBedrooms, numBathrooms;
     private boolean hasElevator, hasPool, hasTerrace, hasGarage;
     private Long provinceId;
-    private User user;
 
 }

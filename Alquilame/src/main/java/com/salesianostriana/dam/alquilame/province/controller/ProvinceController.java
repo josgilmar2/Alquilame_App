@@ -1,11 +1,11 @@
-package com.salesianostriana.dam.alquilame.city.controller;
+package com.salesianostriana.dam.alquilame.province.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/location")
+@RequestMapping("/province")
 @RequiredArgsConstructor
-public class CityController {
+public class ProvinceController {
 }

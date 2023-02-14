@@ -18,6 +18,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +81,23 @@ public class UserService {
         User result = userRepository.findById(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
         return result;
+    }
+
+    @Transactional
+    public Optional<User> findUserWithDwellings(UUID id) {
+        return userRepository.findUserWithDwellings(id);
+    }
+
+    public List<User> findFavouriteUserDwellings(Long id) {
+        return userRepository.findFavouriteUserDwellings(id);
+    }
+
+    public boolean existFavourite(UUID id, Long idDwelling) {
+        return userRepository.existFavourite(id, idDwelling);
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
 }

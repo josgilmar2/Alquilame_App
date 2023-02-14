@@ -19,7 +19,7 @@ public class AllDwellingResponse {
         return AllDwellingResponse.builder()
                 .id(dwelling.getId())
                 .name(dwelling.getName())
-                .province(dwelling.getCity().getName())
+                .province(dwelling.getProvince().getName())
                 .image(dwelling.getImage())
                 .price(dwelling.getPrice())
                 .build();
