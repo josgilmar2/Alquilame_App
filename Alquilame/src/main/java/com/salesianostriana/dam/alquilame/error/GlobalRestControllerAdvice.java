@@ -70,9 +70,24 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
         return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({CityNotFoundException.class})
-    public ResponseEntity<?> handleCityNotFoundException(CityNotFoundException ex, WebRequest request) {
+    @ExceptionHandler({ProvinceNotFoundException.class})
+    public ResponseEntity<?> handleCityNotFoundException(ProvinceNotFoundException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DwellingBadRequestDeleteException.class)
+    public ResponseEntity<?> handleDwellingBadRequestDeleteException(DwellingBadRequestDeleteException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({DwellingAccessDeniedException.class})
+    public ResponseEntity<?> handleDwellingAccessDeniedException(DwellingAccessDeniedException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FavouriteAlreadyInListException.class)
+    public ResponseEntity<?> handleFavouriteAlreadyInListException(FavouriteAlreadyInListException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 
     private final ResponseEntity<Object> buildApiError(String message, WebRequest request, HttpStatus status) {

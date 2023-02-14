@@ -1,13 +1,11 @@
 package com.salesianostriana.dam.alquilame.dwelling.model;
 
-import com.salesianostriana.dam.alquilame.city.model.City;
+import com.salesianostriana.dam.alquilame.province.model.Province;
 import com.salesianostriana.dam.alquilame.user.model.User;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor @AllArgsConstructor
@@ -38,25 +36,39 @@ public class Dwelling {
     private boolean hasElevator, hasPool, hasTerrace, hasGarage;
 
     @ManyToOne
-    @JoinColumn(name = "city_id", foreignKey = @ForeignKey(name = "FK_DWELLING_CITY"))
-    private City city;
+    @JoinColumn(name = "province_id", foreignKey = @ForeignKey(name = "FK_DWELLING_PROVINCE"))
+    private Province province;
 
     @ManyToOne
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_DWELLING_USER"))
     private User user;
 
-    //////////////////////////////////////
-    /* HELPERS de la asociación con City*/
-    //////////////////////////////////////
+    //////////////////////////////////////////
+    /* HELPERS de la asociación con Province*/
+    //////////////////////////////////////////
 
-    public void addCity(City c) {
-        this.city = c;
-        c.getDwellings().add(this);
+    public void addCity(Province p) {
+        this.province = p;
+        p.getDwellings().add(this);
     }
 
-    public void deleteCity(City c) {
-        this.city = null;
-        c.getDwellings().remove(this);
+    public void deleteCity(Province p) {
+        this.province = null;
+        p.getDwellings().remove(this);
+    }
+
+    //////////////////////////////////////
+    /* HELPERS de la asociación con User*/
+    //////////////////////////////////////
+
+    public void addUser(User u) {
+        this.user = u;
+        u.getDwellings().add(this);
+    }
+
+    public void removeUser(User u) {
+        this.user = null;
+        u.getDwellings().remove(this);
     }
 
 }

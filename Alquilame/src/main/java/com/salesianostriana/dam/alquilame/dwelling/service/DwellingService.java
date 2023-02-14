@@ -1,20 +1,18 @@
 package com.salesianostriana.dam.alquilame.dwelling.service;
 
-import com.salesianostriana.dam.alquilame.city.model.City;
-import com.salesianostriana.dam.alquilame.city.service.CityService;
+import com.salesianostriana.dam.alquilame.province.model.Province;
+import com.salesianostriana.dam.alquilame.province.service.ProvinceService;
 import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
 import com.salesianostriana.dam.alquilame.dwelling.dto.DwellingRequest;
-import com.salesianostriana.dam.alquilame.dwelling.dto.OneDwellingResponse;
 import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
 import com.salesianostriana.dam.alquilame.dwelling.repo.DwellingRepository;
-import com.salesianostriana.dam.alquilame.exception.DwellingNotFoundException;
-import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
-import com.salesianostriana.dam.alquilame.exception.UserDwellingsNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.*;
 import com.salesianostriana.dam.alquilame.search.spec.GenericSpecificationBuilder;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteria;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteriaExtractor;
-import com.salesianostriana.dam.alquilame.user.dto.UserResponse;
 import com.salesianostriana.dam.alquilame.user.model.User;
+import com.salesianostriana.dam.alquilame.user.repo.UserRepository;
+import com.salesianostriana.dam.alquilame.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,14 +20,15 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class DwellingService {
 
     private final DwellingRepository dwellingRepository;
-    private final CityService cityService;
+    private final ProvinceService provinceService;
+    private final UserService userService;
+    private final UserRepository userRepository;
 
     public Page<AllDwellingResponse> search(List<SearchCriteria> params, Pageable pageable) {
         GenericSpecificationBuilder<Dwelling> dwellingGenericSpecificationBuilder =
@@ -51,16 +50,18 @@ public class DwellingService {
                 .orElseThrow(() -> new DwellingNotFoundException(id));
     }
 
-    public Page<AllDwellingResponse> findUserDwellings(String username, Pageable pageable) {
-        Page<AllDwellingResponse> result = dwellingRepository.findAllUserDwellings(username, pageable);
+    public Page<AllDwellingResponse> findUserDwellings(User user, Pageable pageable) {
+        Page<AllDwellingResponse> result = dwellingRepository.findAllUserDwellings(user.getUsername(), pageable);
         if(result.isEmpty())
-            throw new UserDwellingsNotFoundException(username);
+            throw new UserDwellingsNotFoundException(user.getUsername());
         return result;
     }
 
     public Dwelling createDwelling(DwellingRequest dto, User user) {
 
-        City toAdd = cityService.findById(dto.getProvinceId());
+        Province toAdd = provinceService.findById(dto.getProvinceId());
+        User user1 = userService.findUserWithDwellings(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
         Dwelling result = Dwelling.builder()
                 .name(dto.getName())
@@ -76,13 +77,92 @@ public class DwellingService {
                 .hasTerrace(dto.isHasTerrace())
                 .hasGarage(dto.isHasGarage())
                 .hasPool(dto.isHasPool())
-                .user(user)
                 .build();
 
         result.addCity(toAdd);
+        result.addUser(user1);
 
         return dwellingRepository.save(result);
 
+    }
+    public Dwelling editDwelling(Long id, DwellingRequest dto, User user) {
+
+        Province toEdit = provinceService.findById(dto.getProvinceId());
+
+        if(user.getUsername().equalsIgnoreCase(findOneDwelling(id).getUser().getUsername())) {
+            return dwellingRepository.findById(id)
+                    .map(dwelling -> {
+                        dwelling.setName(dto.getName());
+                        dwelling.setAddress(dto.getAddress());
+                        dwelling.setDescription(dto.getDescription());
+                        dwelling.setImage(dto.getImage());
+                        dwelling.setType(dto.getType());
+                        dwelling.setPrice(dto.getPrice());
+                        dwelling.setM2(dto.getM2());
+                        dwelling.setNumBathrooms(dto.getNumBathrooms());
+                        dwelling.setNumBedrooms(dto.getNumBedrooms());
+                        dwelling.setHasElevator(dto.isHasElevator());
+                        dwelling.setHasTerrace(dto.isHasTerrace());
+                        dwelling.setHasGarage(dto.isHasGarage());
+                        dwelling.setHasPool(dto.isHasPool());
+                        dwelling.setProvince(toEdit);
+                        dwelling.setUser(user);
+                        return dwellingRepository.save(dwelling);
+                    }).orElseThrow(() -> new DwellingNotFoundException(id));
+        } else {
+            throw new DwellingAccessDeniedException("You cannot edit dwelling with id: " + id + " because it isn't yours.");
+        }
+    }
+
+    public void deleteOneDwelling(Long id, User user) {
+        Dwelling toDelete = dwellingRepository.findById(id)
+                .orElseThrow(() -> new DwellingNotFoundException(id));
+
+        User user1 = userService.findUserWithDwellings(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
+
+        if(!user1.getDwellings().contains(toDelete))
+            throw new DwellingAccessDeniedException("You cannot delete dwelling with id: " + id + " because it isn't yours.");
+
+        List<User> favUserDwellings = userService.findFavouriteUserDwellings(id);
+        for (User u: favUserDwellings) {
+            u.getFavourites().remove(toDelete);
+            userService.save(u);
+        }
+        user1.getFavourites().remove(toDelete);
+        userService.save(user1);
+        dwellingRepository.delete(toDelete);
+    }
+
+    public Dwelling doFavourite(Long id, User user) {
+        Dwelling toMarkAsFavourite = findOneDwelling(id);
+
+        if(userService.existFavourite(user.getId(), id))
+            throw new FavouriteAlreadyInListException(id, user.getUsername());
+
+        user.getFavourites().add(toMarkAsFavourite);
+        dwellingRepository.save(toMarkAsFavourite);
+        userService.save(user);
+
+        return toMarkAsFavourite;
+    }
+
+    public void deleteFavourite(Long id, User user) {
+        Dwelling toDeleteFavourite = findOneDwelling(id);
+        User user1 = userRepository.findById(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
+
+        user1.getFavourites().remove(toDeleteFavourite);
+        userService.save(user1);
+
+    }
+
+    public Page<AllDwellingResponse> findByProvinceId(Long id, Pageable pageable) {
+        Page<AllDwellingResponse> result = dwellingRepository.findByProvinceId(id, pageable);
+
+        if(result.isEmpty())
+            throw new ProvinceNotFoundException(id);
+        return result;
     }
 
 }

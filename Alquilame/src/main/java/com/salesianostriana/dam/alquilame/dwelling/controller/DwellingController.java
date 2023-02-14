@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -38,10 +39,10 @@ public class DwellingController {
         return OneDwellingResponse.of(result);
     }
 
-    @GetMapping("/user/{username}")
-    public PageDto<AllDwellingResponse> getUserDwellings(@PathVariable String username,
+    @GetMapping("/user")
+    public PageDto<AllDwellingResponse> getUserDwellings(@AuthenticationPrincipal User user,
                                                          @PageableDefault(size = 20) Pageable pageable) {
-        return new PageDto<>(dwellingService.findUserDwellings(username, pageable));
+        return new PageDto<>(dwellingService.findUserDwellings(user, pageable));
     }
 
     @PostMapping("/")
@@ -57,10 +58,44 @@ public class DwellingController {
                 .body(OneDwellingResponse.of(created));
     }
 
-    /*@PutMapping("/{id}")
-    public OneDwellingResponse editDwelling()*/
+    @PutMapping("/{id}")
+    public OneDwellingResponse editDwelling(@PathVariable Long id, @RequestBody DwellingRequest dto, @AuthenticationPrincipal User user) {
+        Dwelling edited = dwellingService.editDwelling(id, dto, user);
 
-    //DELETE, POST FAVORITO, GET CIUDADES
+        return OneDwellingResponse.of(edited);
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteDwelling(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        dwellingService.deleteOneDwelling(id, user);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/favourite")
+    public ResponseEntity<OneDwellingResponse> markAsFavourite(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        Dwelling newFavourite = dwellingService.doFavourite(id, user);
+
+        URI createdURI = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newFavourite.getId()).toUri();
+
+        return ResponseEntity.created(createdURI)
+                .body(OneDwellingResponse.of(newFavourite));
+    }
+
+    @DeleteMapping("/{id}/favourite")
+    public ResponseEntity<?> deleteFavourite(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        dwellingService.deleteFavourite(id, user);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/province/{id}")
+    public PageDto<AllDwellingResponse> getDwellingsByProvince(@PathVariable Long id,
+                                                               @PageableDefault(size = 20) Pageable pageable) {
+        return new PageDto<>(dwellingService.findByProvinceId(id, pageable));
+    }
 
 }

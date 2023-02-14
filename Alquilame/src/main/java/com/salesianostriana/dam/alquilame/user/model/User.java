@@ -22,7 +22,10 @@ import java.util.stream.Collectors;
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
 @Builder
-@EntityListeners(AuditingEntityListener.class)
+@NamedEntityGraph(name = "user-with-dwelling",
+        attributeNodes = {
+                @NamedAttributeNode(value = "dwellings")
+        })
 public class User implements UserDetails {
 
     @Id @GeneratedValue(generator = "UUID")
@@ -58,7 +61,13 @@ public class User implements UserDetails {
     @Builder.Default
     private List<Dwelling> dwellings = new ArrayList<>();
 
-    //private List<Dwelling> favourites;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id",
+                            foreignKey = @ForeignKey(name = "FK_FAVOURITES_USER")),
+                inverseJoinColumns = @JoinColumn(name = "dwelling_id",
+                            foreignKey = @ForeignKey(name = "FK_FAVOURITES_DWELLING")),
+                name = "favourites")
+    private List<Dwelling> favourites;
 
     @Builder.Default
     private boolean accountNonExpired = true;
