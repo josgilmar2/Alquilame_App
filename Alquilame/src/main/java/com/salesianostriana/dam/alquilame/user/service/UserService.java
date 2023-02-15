@@ -10,6 +10,7 @@ import com.salesianostriana.dam.alquilame.search.spec.GenericSpecificationBuilde
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteria;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteriaExtractor;
 import com.salesianostriana.dam.alquilame.user.dto.CreateUserDto;
+import com.salesianostriana.dam.alquilame.user.dto.EditPasswordDto;
 import com.salesianostriana.dam.alquilame.user.dto.EditUserProfileDto;
 import com.salesianostriana.dam.alquilame.user.dto.UserResponse;
 import com.salesianostriana.dam.alquilame.user.model.User;
@@ -124,51 +125,29 @@ public class UserService {
                 }).orElseThrow(() -> new UserNotFoundException(user.getId()));
     }
 
-    /*@Transactional
-    public List<Dwelling> findDwellingsByUser(UUID id) {
-        return userRepository.findDwellingsByUser(id);
-    }
-
-    @Transactional
-    public List<Dwelling> findFavoritesByUser(UUID id) {
-        return userRepository.findFavoritesByUser(id);
-    }*/
-
     @Transactional
     public Optional<User> findUserFavouriteDwellings(UUID id) {
         return userRepository.findUserFavouriteDwellings(id);
     }
 
     public void delete(User user) {
-        /*User toDelete = findUserWithDwellings(user.getId())
-                .orElseThrow(() -> new UserNotFoundException(user.getId()));
-
-        List<Dwelling> userDwellings = findDwellingsByUser(toDelete.getId());
-        List<Dwelling> userFavouritesDwellings = findFavoritesByUser(toDelete.getId());
-
-        userFavouritesDwellings.forEach(dwelling -> dwelling.removeUser(toDelete));
-
-        userDwellings.forEach(dwelling -> {
-            dwelling.removeUser(user);
-            dwellingRepository.delete(dwelling);
-        });
-
-        userRepository.delete(user);*/
-
         User toDelete = findUserFavouriteDwellings(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
-
 
         toDelete.getFavourites().forEach(dwelling -> {
             dwelling.removeUser(toDelete);
         });
 
-        /*toDelete.getDwellings().forEach(dwelling -> {
-            dwelling.removeUser(toDelete);
-            dwellingRepository.delete(dwelling);
-        });*/
-
         userRepository.delete(toDelete);
+
+    }
+
+    public User editPassword(EditPasswordDto dto, User user) {
+        return userRepository.findById(user.getId())
+                .map(user1 -> {
+                    user1.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+                    return save(user1);
+                }).orElseThrow(() -> new UserNotFoundException(user.getId()));
 
     }
 

@@ -57,20 +57,4 @@ public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificat
             """)
     Page<AllDwellingResponse> findFavourites(UUID id, Pageable pageable);
 
-    /*@Query("""
-            SELECT d 
-            FROM User u
-            LEFT JOIN FETCH u.dwellings d
-            WHERE u.id = ?1
-            """)
-    List<Dwelling> findDwellingsByUser(UUID id);
-
-    @Query("""
-            SELECT f
-            FROM User u
-            JOIN u.favourites f
-            WHERE u.id = ?1
-            """)
-    List<Dwelling> findFavoritesByUser(UUID id);*/
-
 }

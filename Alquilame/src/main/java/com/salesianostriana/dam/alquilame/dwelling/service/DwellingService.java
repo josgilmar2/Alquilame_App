@@ -3,6 +3,7 @@ package com.salesianostriana.dam.alquilame.dwelling.service;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingAccessDeniedException;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteAlreadyInListException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteDeleteBadRequestException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
@@ -143,7 +144,7 @@ public class DwellingService {
 
     public Dwelling doFavourite(Long id, User user) {
         Dwelling toMarkAsFavourite = findOneDwelling(id);
-        User user1 = userRepository.findUserFavouriteDwellings(user.getId())
+        User user1 = userService.findUserFavouriteDwellings(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
         if(userService.existFavourite(user.getId(), id))
@@ -161,6 +162,8 @@ public class DwellingService {
         User user1 = userRepository.findById(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
+        if(!user1.getFavourites().contains(toDeleteFavourite))
+            throw new FavouriteDeleteBadRequestException(id);
         user1.getFavourites().remove(toDeleteFavourite);
         userService.save(user1);
 

@@ -2,6 +2,7 @@ package com.salesianostriana.dam.alquilame.user.controller;
 
 import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
 import com.salesianostriana.dam.alquilame.page.dto.PageDto;
+import com.salesianostriana.dam.alquilame.user.dto.EditPasswordDto;
 import com.salesianostriana.dam.alquilame.user.dto.EditUserProfileDto;
 import com.salesianostriana.dam.alquilame.user.dto.UserResponse;
 import com.salesianostriana.dam.alquilame.user.model.User;
@@ -56,6 +57,11 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    //VER VIVIENDAS FAVORITAS DEL USUARIO, PUT, DELETE
+    @PutMapping("/changePassword")
+    public UserResponse editPassword(@RequestBody EditPasswordDto dto, @AuthenticationPrincipal User user) {
+        User toEditPassword = userService.editPassword(dto, user);
+
+        return UserResponse.fromUser(toEditPassword);
+    }
 
 }
