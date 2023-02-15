@@ -1,6 +1,8 @@
 package com.salesianostriana.dam.alquilame.user.service;
 
 import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
+import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
+import com.salesianostriana.dam.alquilame.dwelling.repo.DwellingRepository;
 import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
@@ -32,6 +34,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final DwellingRepository dwellingRepository;
 
     public User createUser(CreateUserDto dto, EnumSet<UserRole> roles) {
         User result = User.builder()
@@ -121,9 +124,52 @@ public class UserService {
                 }).orElseThrow(() -> new UserNotFoundException(user.getId()));
     }
 
+    /*@Transactional
+    public List<Dwelling> findDwellingsByUser(UUID id) {
+        return userRepository.findDwellingsByUser(id);
+    }
+
+    @Transactional
+    public List<Dwelling> findFavoritesByUser(UUID id) {
+        return userRepository.findFavoritesByUser(id);
+    }*/
+
+    @Transactional
+    public Optional<User> findUserFavouriteDwellings(UUID id) {
+        return userRepository.findUserFavouriteDwellings(id);
+    }
+
     public void delete(User user) {
-        if(userRepository.existsById(user.getId()))
-            userRepository.delete(user);
+        /*User toDelete = findUserWithDwellings(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
+
+        List<Dwelling> userDwellings = findDwellingsByUser(toDelete.getId());
+        List<Dwelling> userFavouritesDwellings = findFavoritesByUser(toDelete.getId());
+
+        userFavouritesDwellings.forEach(dwelling -> dwelling.removeUser(toDelete));
+
+        userDwellings.forEach(dwelling -> {
+            dwelling.removeUser(user);
+            dwellingRepository.delete(dwelling);
+        });
+
+        userRepository.delete(user);*/
+
+        User toDelete = findUserFavouriteDwellings(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
+
+
+        toDelete.getFavourites().forEach(dwelling -> {
+            dwelling.removeUser(toDelete);
+        });
+
+        /*toDelete.getDwellings().forEach(dwelling -> {
+            dwelling.removeUser(toDelete);
+            dwellingRepository.delete(dwelling);
+        });*/
+
+        userRepository.delete(toDelete);
+
     }
 
 }

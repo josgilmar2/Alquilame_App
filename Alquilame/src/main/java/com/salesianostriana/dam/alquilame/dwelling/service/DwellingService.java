@@ -26,6 +26,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -142,11 +143,13 @@ public class DwellingService {
 
     public Dwelling doFavourite(Long id, User user) {
         Dwelling toMarkAsFavourite = findOneDwelling(id);
+        User user1 = userRepository.findUserFavouriteDwellings(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
         if(userService.existFavourite(user.getId(), id))
             throw new FavouriteAlreadyInListException(id, user.getUsername());
 
-        user.getFavourites().add(toMarkAsFavourite);
+        user1.getFavourites().add(toMarkAsFavourite);
         dwellingRepository.save(toMarkAsFavourite);
         userService.save(user);
 

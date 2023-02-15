@@ -61,7 +61,7 @@ public class User implements UserDetails {
     @Builder.Default
     private List<Dwelling> dwellings = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id",
                             foreignKey = @ForeignKey(name = "FK_FAVOURITES_USER")),
                 inverseJoinColumns = @JoinColumn(name = "dwelling_id",
