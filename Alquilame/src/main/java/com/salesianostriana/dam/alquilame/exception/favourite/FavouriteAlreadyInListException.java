@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.alquilame.exception.dwelling;
+package com.salesianostriana.dam.alquilame.exception.favourite;
 
 public class FavouriteAlreadyInListException extends RuntimeException{
 

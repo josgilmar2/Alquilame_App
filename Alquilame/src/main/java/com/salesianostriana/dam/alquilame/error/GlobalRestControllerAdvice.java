@@ -5,7 +5,9 @@ import com.salesianostriana.dam.alquilame.error.model.impl.ApiValidationSubError
 import com.salesianostriana.dam.alquilame.exception.*;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingAccessDeniedException;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestDeleteException;
-import com.salesianostriana.dam.alquilame.exception.dwelling.FavouriteAlreadyInListException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteAlreadyInListException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteDeleteBadRequestException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.jwt.JwtTokenException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceBadRequestDeleteException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
@@ -100,6 +102,16 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProvinceBadRequestDeleteException.class)
     public ResponseEntity<?> handleProvinceBadRequestDeleteException(ProvinceBadRequestDeleteException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FavouriteNotFoundException.class)
+    public ResponseEntity<?> handleFavouriteNotFoundException(FavouriteNotFoundException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FavouriteDeleteBadRequestException.class)
+    public ResponseEntity<?> handleFavouriteDeleteBadRequestException(FavouriteDeleteBadRequestException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 
