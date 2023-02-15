@@ -5,6 +5,8 @@ import com.salesianostriana.dam.alquilame.error.model.impl.ApiValidationSubError
 import com.salesianostriana.dam.alquilame.exception.*;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingAccessDeniedException;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestDeleteException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestFavouriteException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteAlreadyInListException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteDeleteBadRequestException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
@@ -13,6 +15,7 @@ import com.salesianostriana.dam.alquilame.exception.province.ProvinceBadRequestD
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
+import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +30,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -113,6 +117,40 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(FavouriteDeleteBadRequestException.class)
     public ResponseEntity<?> handleFavouriteDeleteBadRequestException(FavouriteDeleteBadRequestException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DwellingNotFoundException.class)
+    public ResponseEntity<?> handleDwellingNotFoundException(DwellingNotFoundException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DwellingBadRequestFavouriteException.class)
+    public ResponseEntity<?> handleDwellingBadRequestFavouriteException(DwellingBadRequestFavouriteException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({ConstraintViolationException.class})
+    public ResponseEntity<?> handleConstraintViolationException(ConstraintViolationException exception, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ApiErrorImpl.builder()
+                                .status(HttpStatus.BAD_REQUEST)
+                                .message("Constrtaint Validation error. Please check the sublist")
+                                .path(((ServletWebRequest) request).getRequest().getRequestURI())
+                                .subErrors(exception.getConstraintViolations()
+                                        .stream()
+                                        .map(constraintViolation -> {
+                                            return ApiValidationSubError.builder()
+                                                    .message(constraintViolation.getMessage())
+                                                    .rejectedValue(constraintViolation.getInvalidValue())
+                                                    .object(constraintViolation.getRootBean().getClass().getSimpleName())
+                                                    .field(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().asString())
+                                                    .build();
+                                        })
+                                        .collect(Collectors.toList())
+                                )
+                                .build()
+                );
     }
 
     private final ResponseEntity<Object> buildApiError(String message, WebRequest request, HttpStatus status) {
