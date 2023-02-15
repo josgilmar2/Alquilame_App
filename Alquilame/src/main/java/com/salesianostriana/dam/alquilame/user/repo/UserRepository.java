@@ -57,4 +57,10 @@ public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificat
             """)
     Page<AllDwellingResponse> findFavourites(UUID id, Pageable pageable);
 
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByPhoneNumber(String phoneNumber);
+
 }

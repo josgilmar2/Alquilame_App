@@ -68,7 +68,7 @@ public class SecurityConfig {
                                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                         .and()
                                 .authorizeRequests()
-                                .antMatchers("/**", "/user/**", "/dwelling/**", "/province/**").hasAnyRole("PROPIETARIO", "INQULINO")
+                                .antMatchers("/**", "/user/**", "/dwelling/**", "/province/**").hasAnyRole("PROPIETARIO", "INQUILINO")
                                 //.antMatchers("/**", "/user/**", "/dwelling/**").hasRole("INQUILINO")
                                 .anyRequest().authenticated();
 

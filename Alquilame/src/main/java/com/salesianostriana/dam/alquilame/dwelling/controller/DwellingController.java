@@ -17,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -46,7 +47,7 @@ public class DwellingController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<OneDwellingResponse> createDwelling(@RequestBody DwellingRequest dto, @AuthenticationPrincipal User user) {
+    public ResponseEntity<OneDwellingResponse> createDwelling(@Valid @RequestBody DwellingRequest dto, @AuthenticationPrincipal User user) {
         Dwelling created = dwellingService.createDwelling(dto, user);
 
         URI createdURI = ServletUriComponentsBuilder
@@ -59,7 +60,7 @@ public class DwellingController {
     }
 
     @PutMapping("/{id}")
-    public OneDwellingResponse editDwelling(@PathVariable Long id, @RequestBody DwellingRequest dto, @AuthenticationPrincipal User user) {
+    public OneDwellingResponse editDwelling(@PathVariable Long id, @Valid @RequestBody DwellingRequest dto, @AuthenticationPrincipal User user) {
         Dwelling edited = dwellingService.editDwelling(id, dto, user);
 
         return OneDwellingResponse.of(edited);

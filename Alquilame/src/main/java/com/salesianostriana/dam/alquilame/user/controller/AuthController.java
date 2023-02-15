@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -29,7 +31,7 @@ public class AuthController {
     private final JwtProvider jwtProvider;
 
     @PostMapping("/register/inquilino")
-    public ResponseEntity<UserResponse> createUserWithInquilinoRole(@RequestBody CreateUserDto dto) {
+    public ResponseEntity<UserResponse> createUserWithInquilinoRole(@Valid @RequestBody CreateUserDto dto) {
         User user = userService.createUserWithInquilinoRole(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -37,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/propietario")
-    public ResponseEntity<UserResponse> createUserWithPropietarioRole(@RequestBody CreateUserDto dto) {
+    public ResponseEntity<UserResponse> createUserWithPropietarioRole(@Valid @RequestBody CreateUserDto dto) {
         User user = userService.createUSerWitPropietarioRole(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED)

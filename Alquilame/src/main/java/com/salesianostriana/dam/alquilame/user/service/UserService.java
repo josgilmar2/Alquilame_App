@@ -116,7 +116,6 @@ public class UserService {
     public User edit(EditUserProfileDto dto, User user) {
         return userRepository.findById(user.getId())
                 .map(toEdit -> {
-                    toEdit.setUsername(dto.getUsername());
                     toEdit.setFullName(dto.getFullName());
                     toEdit.setAddress(dto.getAddress());
                     toEdit.setPhoneNumber(dto.getPhoneNumber());
@@ -149,6 +148,18 @@ public class UserService {
                     return save(user1);
                 }).orElseThrow(() -> new UserNotFoundException(user.getId()));
 
+    }
+
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public boolean existsByPhoneNumber(String phoneNumber) {
+        return userRepository.existsByPhoneNumber(phoneNumber);
     }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     @PutMapping("/")
-    public UserResponse editProfile(@RequestBody EditUserProfileDto dto, @AuthenticationPrincipal User user) {
+    public UserResponse editProfile(@Valid @RequestBody EditUserProfileDto dto, @AuthenticationPrincipal User user) {
         User toEdit = userService.edit(dto, user);
 
         return UserResponse.fromUser(toEdit);
@@ -58,7 +59,7 @@ public class UserController {
     }
 
     @PutMapping("/changePassword")
-    public UserResponse editPassword(@RequestBody EditPasswordDto dto, @AuthenticationPrincipal User user) {
+    public UserResponse editPassword(@Valid @RequestBody EditPasswordDto dto, @AuthenticationPrincipal User user) {
         User toEditPassword = userService.editPassword(dto, user);
 
         return UserResponse.fromUser(toEditPassword);

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -36,7 +37,7 @@ public class ProvinceController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ProvinceResponse> createProvince(@RequestBody ProvinceRequest dto) {
+    public ResponseEntity<ProvinceResponse> createProvince(@Valid @RequestBody ProvinceRequest dto) {
         Province created = provinceService.create(dto);
 
         URI createdURI = ServletUriComponentsBuilder
@@ -49,7 +50,7 @@ public class ProvinceController {
     }
 
     @PutMapping("/{id}")
-    public ProvinceResponse editProvince(@PathVariable Long id, @RequestBody ProvinceRequest dto) {
+    public ProvinceResponse editProvince(@PathVariable Long id, @Valid @RequestBody ProvinceRequest dto) {
         Province edited = provinceService.edit(id, dto);
 
         return provinceDtoConverter.provinceToProvinceResponse(edited);

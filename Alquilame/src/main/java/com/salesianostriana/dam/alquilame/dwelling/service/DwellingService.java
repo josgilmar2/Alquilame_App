@@ -1,6 +1,8 @@
 package com.salesianostriana.dam.alquilame.dwelling.service;
 
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingAccessDeniedException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestDeleteException;
+import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestFavouriteException;
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteAlreadyInListException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteDeleteBadRequestException;
@@ -96,6 +98,8 @@ public class DwellingService {
     public Dwelling editDwelling(Long id, DwellingRequest dto, User user) {
 
         Province toEdit = provinceService.findById(dto.getProvinceId());
+        User user1 = userService.findUserWithDwellings(user.getId())
+                .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
         if(user.getUsername().equalsIgnoreCase(findOneDwelling(id).getUser().getUsername())) {
             return dwellingRepository.findById(id)
@@ -114,7 +118,7 @@ public class DwellingService {
                         dwelling.setHasGarage(dto.isHasGarage());
                         dwelling.setHasPool(dto.isHasPool());
                         dwelling.setProvince(toEdit);
-                        dwelling.setUser(user);
+                        dwelling.setUser(user1);
                         return dwellingRepository.save(dwelling);
                     }).orElseThrow(() -> new DwellingNotFoundException(id));
         } else {
@@ -124,7 +128,7 @@ public class DwellingService {
 
     public void deleteOneDwelling(Long id, User user) {
         Dwelling toDelete = dwellingRepository.findById(id)
-                .orElseThrow(() -> new DwellingNotFoundException(id));
+                .orElseThrow(() -> new DwellingBadRequestDeleteException(id));
 
         User user1 = userService.findUserWithDwellings(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
@@ -138,12 +142,13 @@ public class DwellingService {
             userService.save(u);
         }
         user1.getFavourites().remove(toDelete);
-        userService.save(user1);
+        toDelete.removeUser(user1);
         dwellingRepository.delete(toDelete);
     }
 
     public Dwelling doFavourite(Long id, User user) {
-        Dwelling toMarkAsFavourite = findOneDwelling(id);
+        Dwelling toMarkAsFavourite = dwellingRepository.findById(id)
+                .orElseThrow(() -> new DwellingBadRequestFavouriteException(id));
         User user1 = userService.findUserFavouriteDwellings(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
@@ -158,7 +163,8 @@ public class DwellingService {
     }
 
     public void deleteFavourite(Long id, User user) {
-        Dwelling toDeleteFavourite = findOneDwelling(id);
+        Dwelling toDeleteFavourite = dwellingRepository.findById(id)
+                .orElseThrow(() -> new DwellingBadRequestDeleteException(id));
         User user1 = userRepository.findById(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
