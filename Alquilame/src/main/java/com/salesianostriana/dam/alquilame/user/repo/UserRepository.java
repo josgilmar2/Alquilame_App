@@ -1,6 +1,9 @@
 package com.salesianostriana.dam.alquilame.user.repo;
 
+import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
 import com.salesianostriana.dam.alquilame.user.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -35,5 +38,13 @@ public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificat
             WHERE f.id = ?1
             """)
     List<User> findFavouriteUserDwellings(Long idDwelling);
+
+    @Query("""
+            SELECT NEW com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse(f.id, f.name, f.province.name, f.image, f.price)
+            FROM User u 
+            JOIN u.favourites f
+            WHERE u.id = ?1
+            """)
+    Page<AllDwellingResponse> findFavourites(UUID id, Pageable pageable);
 
 }

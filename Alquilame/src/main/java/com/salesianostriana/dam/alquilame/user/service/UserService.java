@@ -1,11 +1,14 @@
 package com.salesianostriana.dam.alquilame.user.service;
 
+import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
 import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import com.salesianostriana.dam.alquilame.search.spec.GenericSpecificationBuilder;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteria;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteriaExtractor;
 import com.salesianostriana.dam.alquilame.user.dto.CreateUserDto;
+import com.salesianostriana.dam.alquilame.user.dto.EditUserProfileDto;
 import com.salesianostriana.dam.alquilame.user.dto.UserResponse;
 import com.salesianostriana.dam.alquilame.user.model.User;
 import com.salesianostriana.dam.alquilame.user.model.UserRole;
@@ -77,9 +80,8 @@ public class UserService {
     }
 
     public User myProfile(User user) {
-        User result = userRepository.findById(user.getId())
+        return userRepository.findById(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
-        return result;
     }
 
     @Transactional
@@ -97,6 +99,31 @@ public class UserService {
 
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    public Page<AllDwellingResponse> findFavourites(User user, Pageable pageable) {
+        Page<AllDwellingResponse> result = userRepository.findFavourites(user.getId(), pageable);
+
+        if(result.isEmpty())
+            throw new FavouriteNotFoundException(user.getUsername());
+        return result;
+    }
+
+    public User edit(EditUserProfileDto dto, User user) {
+        return userRepository.findById(user.getId())
+                .map(toEdit -> {
+                    toEdit.setUsername(dto.getUsername());
+                    toEdit.setFullName(dto.getFullName());
+                    toEdit.setAddress(dto.getAddress());
+                    toEdit.setPhoneNumber(dto.getPhoneNumber());
+                    toEdit.setAvatar(dto.getAvatar());
+                    return userRepository.save(toEdit);
+                }).orElseThrow(() -> new UserNotFoundException(user.getId()));
+    }
+
+    public void delete(User user) {
+        if(userRepository.existsById(user.getId()))
+            userRepository.delete(user);
     }
 
 }
