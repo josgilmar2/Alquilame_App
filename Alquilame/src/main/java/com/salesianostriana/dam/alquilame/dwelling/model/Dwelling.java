@@ -18,7 +18,7 @@ public class Dwelling {
 
     private String name, address;
 
-    @Length(max = 4000)
+    @Length(max = 6000)
     private String description;
 
     /*@ElementCollection(fetch = FetchType.EAGER)

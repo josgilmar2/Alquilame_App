@@ -51,8 +51,8 @@ public class User implements UserDetails {
     @Convert(converter = EnumSetUserRoleConverter.class)
     private EnumSet<UserRole> roles;
 
-    @CreatedDate
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Builder.Default
     private LocalDateTime lastPasswordChangeAt = LocalDateTime.now();

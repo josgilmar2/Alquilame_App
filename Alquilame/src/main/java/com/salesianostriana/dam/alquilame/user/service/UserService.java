@@ -24,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
@@ -145,6 +146,7 @@ public class UserService {
         return userRepository.findById(user.getId())
                 .map(user1 -> {
                     user1.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+                    user1.setLastPasswordChangeAt(LocalDateTime.now());
                     return save(user1);
                 }).orElseThrow(() -> new UserNotFoundException(user.getId()));
 

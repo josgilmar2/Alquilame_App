@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.alquilame.dwelling.dto;
 
 import com.salesianostriana.dam.alquilame.dwelling.model.Type;
-import com.salesianostriana.dam.alquilame.user.model.User;
-import com.salesianostriana.dam.alquilame.validation.annotation.dwelling.OnlyThreeTypes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,12 +27,18 @@ public class DwellingRequest {
 
     private Type type;
 
-    @NotNull(message = "{dwellingRequest.price.notempty}")
     @Min(value = 100, message = "{dwellingRequest.price.min}")
     private double price;
 
+    @Min(value = 30, message = "{dwellingRequest.m2.min}")
     private double m2;
-    private int numBedrooms, numBathrooms;
+
+    @Min(value = 1, message = "{dwellingRequest.numBedrooms.min}")
+    private int numBedrooms;
+
+    @Min(value = 1, message = "{dwellingRequest.numBathrooms.min}")
+    private int numBathrooms;
+
     private boolean hasElevator, hasPool, hasTerrace, hasGarage;
 
     @NotNull(message = "{dwellingRequest.provinceId.notnull}")
