@@ -12,14 +12,14 @@ import java.lang.annotation.*;
 @Documented
 public @interface CorrectPhoneNumber {
 
-    String message() default "The phone number must be 8 number digits";
+    String message() default "The phone number must be 9 number digits";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
 
-    int min() default 8;
-    int max() default 8;
+    int min() default 9;
+    int max() default 9;
 
     boolean hasNumber() default true;
 

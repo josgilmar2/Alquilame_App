@@ -6,6 +6,7 @@ import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingBadRequestF
 import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteAlreadyInListException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteDeleteBadRequestException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteOwnDwellingsException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
@@ -154,6 +155,9 @@ public class DwellingService {
 
         if(userService.existFavourite(user.getId(), id))
             throw new FavouriteAlreadyInListException(id, user.getUsername());
+
+        if(user1.getDwellings().contains(toMarkAsFavourite))
+            throw new FavouriteOwnDwellingsException(id);
 
         user1.getFavourites().add(toMarkAsFavourite);
         dwellingRepository.save(toMarkAsFavourite);

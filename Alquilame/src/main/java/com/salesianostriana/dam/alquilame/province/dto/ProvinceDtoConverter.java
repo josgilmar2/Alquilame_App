@@ -29,7 +29,7 @@ public class ProvinceDtoConverter {
         return ProvinceResponse.builder()
                 .id(p.getId())
                 .name(p.getName())
-                .dwelling(aux)
+                .dwellings(aux)
                 .build();
     }
 

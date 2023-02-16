@@ -10,6 +10,7 @@ import com.salesianostriana.dam.alquilame.exception.dwelling.DwellingNotFoundExc
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteAlreadyInListException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteDeleteBadRequestException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteOwnDwellingsException;
 import com.salesianostriana.dam.alquilame.exception.jwt.JwtTokenException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceBadRequestDeleteException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
@@ -126,6 +127,11 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(DwellingBadRequestFavouriteException.class)
     public ResponseEntity<?> handleDwellingBadRequestFavouriteException(DwellingBadRequestFavouriteException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FavouriteOwnDwellingsException.class)
+    public ResponseEntity<?> handleFavouriteOwnDwellingsException(FavouriteOwnDwellingsException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 
