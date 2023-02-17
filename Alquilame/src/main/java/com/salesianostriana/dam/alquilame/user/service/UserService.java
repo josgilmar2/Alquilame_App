@@ -5,6 +5,7 @@ import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
 import com.salesianostriana.dam.alquilame.dwelling.repo.DwellingRepository;
 import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.user.PasswordNotMatchException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import com.salesianostriana.dam.alquilame.files.service.StorageService;
 import com.salesianostriana.dam.alquilame.search.spec.GenericSpecificationBuilder;
@@ -144,6 +145,8 @@ public class UserService {
     }
 
     public User editPassword(EditPasswordDto dto, User user) {
+        if(!passwordEncoder.matches(dto.getOldPassword(), user.getPassword()))
+            throw new PasswordNotMatchException();
         return userRepository.findById(user.getId())
                 .map(user1 -> {
                     user1.setPassword(passwordEncoder.encode(dto.getNewPassword()));
