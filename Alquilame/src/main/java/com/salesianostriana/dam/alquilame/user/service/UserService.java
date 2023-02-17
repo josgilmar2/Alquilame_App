@@ -6,13 +6,11 @@ import com.salesianostriana.dam.alquilame.dwelling.repo.DwellingRepository;
 import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
+import com.salesianostriana.dam.alquilame.files.service.StorageService;
 import com.salesianostriana.dam.alquilame.search.spec.GenericSpecificationBuilder;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteria;
 import com.salesianostriana.dam.alquilame.search.util.SearchCriteriaExtractor;
-import com.salesianostriana.dam.alquilame.user.dto.CreateUserDto;
-import com.salesianostriana.dam.alquilame.user.dto.EditPasswordDto;
-import com.salesianostriana.dam.alquilame.user.dto.EditUserProfileDto;
-import com.salesianostriana.dam.alquilame.user.dto.UserResponse;
+import com.salesianostriana.dam.alquilame.user.dto.*;
 import com.salesianostriana.dam.alquilame.user.model.User;
 import com.salesianostriana.dam.alquilame.user.model.UserRole;
 import com.salesianostriana.dam.alquilame.user.repo.UserRepository;
@@ -22,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -36,16 +35,19 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private final DwellingRepository dwellingRepository;
+    private final StorageService storageService;
 
-    public User createUser(CreateUserDto dto, EnumSet<UserRole> roles) {
+    public User createUser(CreateUserDto dto, EnumSet<UserRole> roles, MultipartFile file) {
+
+        String filename = storageService.store(file);
+
         User result = User.builder()
                 .username(dto.getUsername())
                 .fullName(dto.getFullName())
                 .email(dto.getEmail())
                 .address(dto.getAddress())
                 .phoneNumber(dto.getPhoneNumber())
-                .avatar(dto.getAvatar())
+                .avatar(filename)
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .roles(roles)
                 .build();
@@ -53,12 +55,12 @@ public class UserService {
         return userRepository.save(result);
     }
 
-    public User createUserWithInquilinoRole(CreateUserDto dto) {
-        return createUser(dto, EnumSet.of(UserRole.INQUILINO));
+    public User createUserWithInquilinoRole(CreateUserDto dto, MultipartFile file) {
+        return createUser(dto, EnumSet.of(UserRole.INQUILINO), file);
     }
 
-    public User createUSerWitPropietarioRole(CreateUserDto dto) {
-        return createUser(dto, EnumSet.of(UserRole.PROPIETARIO));
+    public User createUSerWitPropietarioRole(CreateUserDto dto, MultipartFile file) {
+        return createUser(dto, EnumSet.of(UserRole.PROPIETARIO), file);
     }
 
     public Optional<User> findByUsername(String username) {
@@ -120,7 +122,6 @@ public class UserService {
                     toEdit.setFullName(dto.getFullName());
                     toEdit.setAddress(dto.getAddress());
                     toEdit.setPhoneNumber(dto.getPhoneNumber());
-                    toEdit.setAvatar(dto.getAvatar());
                     return userRepository.save(toEdit);
                 }).orElseThrow(() -> new UserNotFoundException(user.getId()));
     }
@@ -164,4 +165,18 @@ public class UserService {
         return userRepository.existsByPhoneNumber(phoneNumber);
     }
 
+    public User editAvatar(MultipartFile file, User user) {
+        User user1 = myProfile(user);
+        String filename = storageService.store(file);
+
+        user1.setAvatar(filename);
+        return userRepository.save(user1);
+    }
+
+    public User deleteAvatar(User user) {
+        User user1 = myProfile(user);
+
+        user1.setAvatar(null);
+        return userRepository.save(user1);
+    }
 }

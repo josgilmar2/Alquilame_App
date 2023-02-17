@@ -14,6 +14,8 @@ import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteOwnDwelli
 import com.salesianostriana.dam.alquilame.exception.jwt.JwtTokenException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceBadRequestDeleteException;
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
+import com.salesianostriana.dam.alquilame.exception.storage.FileEmptyException;
+import com.salesianostriana.dam.alquilame.exception.storage.StorageException;
 import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -132,6 +134,16 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(FavouriteOwnDwellingsException.class)
     public ResponseEntity<?> handleFavouriteOwnDwellingsException(FavouriteOwnDwellingsException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(StorageException.class)
+    public ResponseEntity<?> handleStorageException(StorageException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FileEmptyException.class)
+    public ResponseEntity<?> handleFileEmptyException(FileEmptyException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 

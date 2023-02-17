@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -45,233 +46,147 @@ public class DwellingController {
                                             {
                                                 "content": [
                                                     {
-                                                        "id": 1,
-                                                        "name": "A CoruÃ±a",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 89,
-                                                                "name": "Casa independiente en IÃ±as, cerca centro comercial",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/perferendisfugiatqui.png?size=50x50&set=set1",
-                                                                "price": 700.35
-                                                            }
-                                                        ]
+                                                        "id": 53,
+                                                        "name": "Estancia Campos De Lino",
+                                                        "province": "Guadalajara",
+                                                        "image": "chalet.jpeg",
+                                                        "price": 803.38
                                                     },
                                                     {
-                                                        "id": 2,
-                                                        "name": "Alava",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 91,
-                                                                "name": "Chalet adosado en calle Gorbea, 1",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/aliasestvitae.png?size=50x50&set=set1",
-                                                                "price": 1236.7
-                                                            }
-                                                        ]
+                                                        "id": 54,
+                                                        "name": "Piso Acogedor",
+                                                        "province": "Caceres",
+                                                        "image": "piso.jpeg",
+                                                        "price": 450.0
                                                     },
                                                     {
-                                                        "id": 3,
-                                                        "name": "Albacete",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 90,
-                                                                "name": "Piso en San Antonio Abad - Poligono San Anton",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/earummagniea.png?size=50x50&set=set1",
-                                                                "price": 650.86
-                                                            }
-                                                        ]
+                                                        "id": 55,
+                                                        "name": "Casa Los Rodriguez",
+                                                        "province": "Murcia",
+                                                        "image": "casa.jpeg",
+                                                        "price": 1500.94
                                                     },
                                                     {
-                                                        "id": 4,
-                                                        "name": "Alicante",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 74,
-                                                                "name": "Casa independiente en calle Galia",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/molestiaeenimblanditiis.png?size=50x50&set=set1",
-                                                                "price": 6000.12
-                                                            }
-                                                        ]
+                                                        "id": 56,
+                                                        "name": "Casa Rural",
+                                                        "province": "Granada",
+                                                        "image": "casa1.jpg",
+                                                        "price": 1100.0
                                                     },
                                                     {
-                                                        "id": 5,
-                                                        "name": "Almeria",
-                                                        "dwellings": []
+                                                        "id": 57,
+                                                        "name": "Piso en alquiler en FLOTA DE INDIAS",
+                                                        "province": "Sevilla",
+                                                        "image": "piso1.jpeg",
+                                                        "price": 765.22
                                                     },
                                                     {
-                                                        "id": 6,
-                                                        "name": "Asturias",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 68,
-                                                                "name": "Casa independiente en calle Naon, 20 A",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/velquaequia.png?size=50x50&set=set1",
-                                                                "price": 650.24
-                                                            }
-                                                        ]
+                                                        "id": 58,
+                                                        "name": "Piso barato en Barcelona",
+                                                        "province": "Barcelona",
+                                                        "image": "piso2.jpeg",
+                                                        "price": 788.51
                                                     },
                                                     {
-                                                        "id": 7,
-                                                        "name": "Avila",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 66,
-                                                                "name": "El Refugio, Casa en calle Albahaca NÂº36",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/etquamcorrupti.png?size=50x50&set=set1",
-                                                                "price": 900.77
-                                                            }
-                                                        ]
+                                                        "id": 59,
+                                                        "name": "Piso en Fotografo Angel Llanos, 14",
+                                                        "province": "Pontevedra",
+                                                        "image": "piso.jpeg",
+                                                        "price": 770.0
                                                     },
                                                     {
-                                                        "id": 8,
-                                                        "name": "Badajoz",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 85,
-                                                                "name": "Casa adosado en calle CASTILLO DE ALMORCHoN",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/eosadipiscidistinctio.png?size=50x50&set=set1",
-                                                                "price": 900.96
-                                                            }
-                                                        ]
+                                                        "id": 60,
+                                                        "name": "Esmeralda (Chalet adosado en calle Toronga, 11)",
+                                                        "province": "Madrid",
+                                                        "image": "chalet1.jpeg",
+                                                        "price": 2495.6
                                                     },
                                                     {
-                                                        "id": 9,
-                                                        "name": "Baleares",
-                                                        "dwellings": []
+                                                        "id": 61,
+                                                        "name": "Piso en Zapillo",
+                                                        "province": "Almeria",
+                                                        "image": "piso1.jpeg",
+                                                        "price": 550.65
                                                     },
                                                     {
-                                                        "id": 10,
-                                                        "name": "Barcelona",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 58,
-                                                                "name": "Piso barato en Barcelona",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/eoseaqueest.png?size=50x50&set=set1",
-                                                                "price": 788.51
-                                                            },
-                                                            {
-                                                                "id": 88,
-                                                                "name": "Casa independiente en Passatge Oriol",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/exeosvoluptatem.png?size=50x50&set=set1",
-                                                                "price": 1529.37
-                                                            },
-                                                            {
-                                                                "id": 97,
-                                                                "name": "Piso en VARSOVIA",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/voluptatibuserrorillo.png?size=50x50&set=set1",
-                                                                "price": 886.91
-                                                            }
-                                                        ]
+                                                        "id": 62,
+                                                        "name": "Chalet independiente en calle de Santa Isabel, 51",
+                                                        "province": "Tarragona",
+                                                        "image": "chalet2.jpeg",
+                                                        "price": 1500.08
                                                     },
                                                     {
-                                                        "id": 11,
-                                                        "name": "Bizkaia",
-                                                        "dwellings": []
+                                                        "id": 63,
+                                                        "name": "Casa adosado en calle Vicente Trueba, 7",
+                                                        "province": "Cantabria",
+                                                        "image": "casa1.jpg",
+                                                        "price": 1200.44
                                                     },
                                                     {
-                                                        "id": 12,
-                                                        "name": "Burgos",
-                                                        "dwellings": []
+                                                        "id": 64,
+                                                        "name": "Piso en calle medinaceli",
+                                                        "province": "Soria",
+                                                        "image": "piso.jpeg",
+                                                        "price": 900.71
                                                     },
                                                     {
-                                                        "id": 13,
-                                                        "name": "Caceres",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 54,
-                                                                "name": "Piso Acogedor",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/veniamiustoqui.png?size=50x50&set=set1",
-                                                                "price": 450.0
-                                                            }
-                                                        ]
+                                                        "id": 65,
+                                                        "name": "Estancia Campos De Lino en avenida de Los Recreos",
+                                                        "province": "Valladolid",
+                                                        "image": "casa2.jpeg",
+                                                        "price": 850.19
                                                     },
                                                     {
-                                                        "id": 14,
-                                                        "name": "Cadiz",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 65,
-                                                                "name": "Piso en Sagasta",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/quidemplaceatconsequatur.png?size=50x50&set=set1",
-                                                                "price": 600.14
-                                                            }
-                                                        ]
+                                                        "id": 66,
+                                                        "name": "Piso en Sagasta",
+                                                        "province": "Cadiz",
+                                                        "image": "piso2.jpeg",
+                                                        "price": 600.14
                                                     },
                                                     {
-                                                        "id": 15,
-                                                        "name": "Cantabria",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 62,
-                                                                "name": "Casa adosado en calle Vicente Trueba, 7",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/necessitatibusanimirerum.png?size=50x50&set=set1",
-                                                                "price": 1200.44
-                                                            }
-                                                        ]
+                                                        "id": 67,
+                                                        "name": "El Refugio, Casa en calle Albahaca Nº36",
+                                                        "province": "Avila",
+                                                        "image": "casa.jpeg",
+                                                        "price": 900.77
                                                     },
                                                     {
-                                                        "id": 16,
-                                                        "name": "Castellon",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 87,
-                                                                "name": "Chalet independiente en calle de la Muntanyeta de Sant Josep, 26",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/quisabvoluptatem.png?size=50x50&set=set1",
-                                                                "price": 900.13
-                                                            }
-                                                        ]
+                                                        "id": 68,
+                                                        "name": "Chalet independiente en calle Lamas de Prado, 66 B",
+                                                        "province": "Lugo",
+                                                        "image": "chalet2.jpeg",
+                                                        "price": 420.34
                                                     },
                                                     {
-                                                        "id": 17,
-                                                        "name": "Ceuta",
-                                                        "dwellings": []
+                                                        "id": 69,
+                                                        "name": "Casa independiente en calle Naon, 20 A",
+                                                        "province": "Asturias",
+                                                        "image": "casa.jpeg",
+                                                        "price": 650.24
                                                     },
                                                     {
-                                                        "id": 18,
-                                                        "name": "Ciudad Real",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 76,
-                                                                "name": "Casa adosada en Pau 2 - 600",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/atoditest.png?size=50x50&set=set1",
-                                                                "price": 525.7
-                                                            }
-                                                        ]
+                                                        "id": 70,
+                                                        "name": "Chalet independiente en ronda San Cristobal",
+                                                        "province": "Navarra",
+                                                        "image": "chalet1.jpeg",
+                                                        "price": 3000.0
                                                     },
                                                     {
-                                                        "id": 19,
-                                                        "name": "Cordoba",
-                                                        "dwellings": [
-                                                            {
-                                                                "id": 71,
-                                                                "name": "Chalet independiente en calle Junco, 1",
-                                                                "province": null,
-                                                                "image": "https://robohash.org/commodiametnatus.png?size=50x50&set=set1",
-                                                                "price": 1250.36
-                                                            }
-                                                        ]
+                                                        "id": 71,
+                                                        "name": "Piso en calle Orient",
+                                                        "province": "Toledo",
+                                                        "image": "piso1.jpeg",
+                                                        "price": 814.98
                                                     },
                                                     {
-                                                        "id": 20,
-                                                        "name": "Cuenca",
-                                                        "dwellings": []
+                                                        "id": 72,
+                                                        "name": "Chalet independiente en calle Junco, 1",
+                                                        "province": "Cordoba",
+                                                        "image": "chalet2.jpeg",
+                                                        "price": 1250.36
                                                     }
                                                 ],
-                                                "totalElements": 52,
+                                                "totalElements": 50,
                                                 "totalPages": 3,
                                                 "number": 0,
                                                 "size": 20
@@ -306,10 +221,10 @@ public class DwellingController {
                                                 "id": 53,
                                                 "name": "Estancia Campos De Lino",
                                                 "province": "Guadalajara",
-                                                "image": "https://robohash.org/laboreullamaut.png?size=50x50&set=set1",
+                                                "image": "chalet.jpeg",
                                                 "price": 803.38,
                                                 "address": "Torrejon del Rey - Guadalajara",
-                                                "description": "Chalet independiente en parcela de 600 metros. Divido en 2 plantas sin escaleras son independientes las 2, la parte de arriba con 3 dormitorios muy amplios con armarios empotrados y maleteros grandes, aire acondicionado con bomba cde calor y calefaccion por gasoil, ventanas de pvc Climalit 10 y mosquiteras, las puertas son de ancho para minusvalidos, para baÃ±o. Completo con ventana mosquitera y baÃ±era, cocina completa con mesa y banco 2 ventanas, vitroceramica de induccion, puerta corredera para no entorpecer en la cocina salon con 2 terrazas grande con chimenea. Una de ellas esta cerrada con cerramiento y sirve para habitacion o despacho o q se requiera a gusto de las necesidades de ca uno, tiene mucho sol y vistas al jardin, suelos rusticos. Terraza abierta mas diminuta para tender y da a la piscina y vistas, entrada con una cancela cerrada de aluminio y ventana oscilobatiente y puerta corredera antimosquitos y entrada a la casa con holl amplio q de frente el salon, derecha habitaciones e izda. Cocina. Portero automatico y puerta con motor para meter el coche si uno quiere hay suficiente para aparcar fuera, pero tiene su cochera por si quieres meter motos o bicis. Segunda vivienda las dos miden 150metros cada una. Entras y tienes un salon garaje muy grande con armario, para lavadora o secadora y preparada para poner pila si quieres, cuarto de calderas con deposito 750 litros y tiene espacio para trastos, 2 habitaciones una forrada toda de madera con armario empotrados 3 cuerpos mas maleteros amplios da a la piscina, otro salon muy grande con la cocina tipo isla y chimenea, tiene unas puertas correderas grandes para diferenciar los espacios, luego otra habitacion con puerta corredera aire acondicionado y bomba de calor y baÃ±o completo con ventana mosquitera y plato de ducha. Esta para entrar a vivir.",
+                                                "description": "Chalet independiente en parcela de 600 metros. Divido en 2 plantas sin escaleras son independientes las 2, la parte de arriba con 3 dormitorios muy amplios con armarios empotrados y maleteros grandes, aire acondicionado con bomba cde calor y calefaccion por gasoil, ventanas de pvc Climalit 10 y mosquiteras, las puertas son de ancho para minusvalidos, para baño. Completo con ventana mosquitera y bañera, cocina completa con mesa y banco 2 ventanas, vitroceramica de induccion, puerta corredera para no entorpecer en la cocina salon con 2 terrazas grande con chimenea. Una de ellas esta cerrada con cerramiento y sirve para habitacion o despacho o q se requiera a gusto de las necesidades de ca uno, tiene mucho sol y vistas al jardin, suelos rusticos. Terraza abierta mas diminuta para tender y da a la piscina y vistas, entrada con una cancela cerrada de aluminio y ventana oscilobatiente y puerta corredera antimosquitos y entrada a la casa con holl amplio q de frente el salon, derecha habitaciones e izda. Cocina. Portero automatico y puerta con motor para meter el coche si uno quiere hay suficiente para aparcar fuera, pero tiene su cochera por si quieres meter motos o bicis. Segunda vivienda las dos miden 150metros cada una. Entras y tienes un salon garaje muy grande con armario, para lavadora o secadora y preparada para poner pila si quieres, cuarto de calderas con deposito 750 litros y tiene espacio para trastos, 2 habitaciones una forrada toda de madera con armario empotrados 3 cuerpos mas maleteros amplios da a la piscina, otro salon muy grande con la cocina tipo isla y chimenea, tiene unas puertas correderas grandes para diferenciar los espacios, luego otra habitacion con puerta corredera aire acondicionado y bomba de calor y baño completo con ventana mosquitera y plato de ducha. Esta para entrar a vivir.",
                                                 "type": "CHALET",
                                                 "m2": 300.0,
                                                 "numBedrooms": 5,
@@ -322,7 +237,7 @@ public class DwellingController {
                                                     "username": "eantoniutti0",
                                                     "fullName": "Elicia Antoniutti",
                                                     "email": "eantoniutti0@furl.net",
-                                                    "phoneNumber": "80132928",
+                                                    "phoneNumber": "801329286",
                                                     "numPublications": 5
                                                 }
                                             }
@@ -346,7 +261,7 @@ public class DwellingController {
         return OneDwellingResponse.of(result);
     }
 
-    @Operation(summary = "Obtener la lista de viviendas pagiandas de un usuario")
+    @Operation(summary = "Obtener la lista de viviendas paginadas de un usuario")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Se ha encontrado correctamente la lista de viviendas pagianadas del usuario",
@@ -360,35 +275,35 @@ public class DwellingController {
                                                         "id": 53,
                                                         "name": "Estancia Campos De Lino",
                                                         "province": "Guadalajara",
-                                                        "image": "https://robohash.org/laboreullamaut.png?size=50x50&set=set1",
+                                                        "image": "chalet.jpeg",
                                                         "price": 803.38
                                                     },
                                                     {
                                                         "id": 54,
                                                         "name": "Piso Acogedor",
                                                         "province": "Caceres",
-                                                        "image": "https://robohash.org/veniamiustoqui.png?size=50x50&set=set1",
+                                                        "image": "piso.jpeg",
                                                         "price": 450.0
                                                     },
                                                     {
                                                         "id": 55,
                                                         "name": "Casa Los Rodriguez",
                                                         "province": "Murcia",
-                                                        "image": "https://robohash.org/voluptatemenimnihil.png?size=50x50&set=set1",
+                                                        "image": "casa.jpeg",
                                                         "price": 1500.94
                                                     },
                                                     {
-                                                        "id": 75,
+                                                        "id": 76,
                                                         "name": "Piso en paseo heriz",
                                                         "province": "Guipuzkoa",
-                                                        "image": "https://robohash.org/animiquasperferendis.png?size=50x50&set=set1",
+                                                        "image": "piso.jpeg",
                                                         "price": 921.43
                                                     },
                                                     {
-                                                        "id": 89,
-                                                        "name": "Casa independiente en IÃ±as, cerca centro comercial",
-                                                        "province": "A CoruÃ±a",
-                                                        "image": "https://robohash.org/perferendisfugiatqui.png?size=50x50&set=set1",
+                                                        "id": 90,
+                                                        "name": "Casa independiente en Iñas, cerca centro comercial",
+                                                        "province": "A Coruña",
+                                                        "image": "casa.jpeg",
                                                         "price": 700.35
                                                     }
                                                 ],
@@ -422,19 +337,18 @@ public class DwellingController {
                     examples = {@ExampleObject(
                             value = """
                                     {
-                                        "name": "Piso Cuqui",
+                                        "name": "Chalet Cuqui",
                                         "address": "C/ Sierpes Nº2, Sevilla",
-                                        "description": "Piso muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
-                                        "image": "",
-                                        "type": "CASA",
+                                        "description": "Chalet muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
+                                        "type": "CHALET",
                                         "price": 563,
                                         "m2": 34,
                                         "numBedrooms": 3,
                                         "numBathrooms": 1,
-                                        "hasElevator": true,
-                                        "hasPool": false,
+                                        "hasElevator": false,
+                                        "hasPool": true,
                                         "hasTerrace": true,
-                                        "hasGarage": false,
+                                        "hasGarage": true,
                                         "provinceId": 43
                                     }
                                     """
@@ -448,21 +362,21 @@ public class DwellingController {
                             examples = {@ExampleObject(
                                     value = """
                                             {
-                                                "id": 102,
-                                                "name": "Piso Cuqui",
+                                                "id": 103,
+                                                "name": "Chalet Cuqui",
                                                 "province": "Sevilla",
-                                                "image": "",
+                                                "image": "chalet.jpeg",
                                                 "price": 563.0,
                                                 "address": "C/ Sierpes Nº2, Sevilla",
-                                                "description": "Piso muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
-                                                "type": "CASA",
+                                                "description": "Chalet muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
+                                                "type": "CHALET",
                                                 "m2": 34.0,
                                                 "numBedrooms": 3,
                                                 "numBathrooms": 1,
-                                                "hasElevator": true,
-                                                "hasPool": false,
+                                                "hasElevator": false,
+                                                "hasPool": true,
                                                 "hasTerrace": true,
-                                                "hasGarage": false,
+                                                "hasGarage": true,
                                                 "owner": {
                                                     "username": "eantoniutti0",
                                                     "fullName": "Elicia Antoniutti",
@@ -484,8 +398,10 @@ public class DwellingController {
                     content = @Content),
     })
     @PostMapping("/")
-    public ResponseEntity<OneDwellingResponse> createDwelling(@Valid @RequestBody DwellingRequest dto, @AuthenticationPrincipal User user) {
-        Dwelling created = dwellingService.createDwelling(dto, user);
+    public ResponseEntity<OneDwellingResponse> createDwelling(@Valid @RequestPart("dwelling") DwellingRequest dto,
+                                                              @AuthenticationPrincipal User user,
+                                                              @RequestPart("file") MultipartFile file) {
+        Dwelling created = dwellingService.createDwelling(dto, user, file);
 
         URI createdURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -503,11 +419,10 @@ public class DwellingController {
                     examples = {@ExampleObject(
                             value = """
                                     {
-                                        "name": "Piso Cuqui",
+                                        "name": "Chalet Cuqui",
                                         "address": "C/ Sierpes Nº2, Sevilla",
-                                        "description": "Piso muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
-                                        "image": "",
-                                        "type": "CASA",
+                                        "description": "Chalet muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
+                                        "type": "CHALET",
                                         "price": 563,
                                         "m2": 34,
                                         "numBedrooms": 3,
@@ -529,14 +444,14 @@ public class DwellingController {
                             examples = {@ExampleObject(
                                     value = """
                                             {
-                                                "id": 53,
-                                                "name": "Piso Cuqui",
+                                                "id": 103,
+                                                "name": "Chalet Cuqui",
                                                 "province": "Sevilla",
-                                                "image": "",
+                                                "image": "chalet.jpeg",
                                                 "price": 563.0,
                                                 "address": "C/ Sierpes Nº2, Sevilla",
-                                                "description": "Piso muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
-                                                "type": "CASA",
+                                                "description": "Chalet muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
+                                                "type": "CHALET",
                                                 "m2": 34.0,
                                                 "numBedrooms": 3,
                                                 "numBathrooms": 1,
@@ -609,26 +524,26 @@ public class DwellingController {
                                     value = """
                                             {
                                                 "id": 76,
-                                                "name": "Casa adosada en Pau 2 - 600",
-                                                "province": "Ciudad Real",
-                                                "image": "https://robohash.org/atoditest.png?size=50x50&set=set1",
-                                                "price": 525.7,
-                                                "address": "Puertollano, Ciudad Real",
-                                                "description": "Zona con preciosas vistas al parque de los patos. Unifamiliar con dos plantas, mas magnifica planta sotano con chimenea y muebles rusticos de diseÃ±o. Calefaccion individual y aire acondicionado en dormitorio principal. Cochera espaciosa.",
-                                                "type": "CASA",
-                                                "m2": 183.0,
-                                                "numBedrooms": 3,
-                                                "numBathrooms": 2,
-                                                "hasElevator": false,
+                                                "name": "Piso en paseo heriz",
+                                                "province": "Guipuzkoa",
+                                                "image": "piso.jpeg",
+                                                "price": 921.43,
+                                                "address": "Antiguo, Donostia-San Sebastian",
+                                                "description": "En el barrio del Antiguo, en edificio de construccion reciente, alquilamos este caprichooso apartamento. Consta de salon comedor, cocina equipada y dormitorio con amplio armario y baño con ducha incorporado, tipo suite. Se accede a una amplia terraza tanto desde el salon como desde el dormitorio con vistas a la bahia, Monte Igeldo, Isla Santa Clara y Monte Urgul La carpinteria interior es de madera, ventanas climalit y los servicios individuales mediante caldera de gas natural. Dispone de un garaje cerrado motorizado en el mismo edificio de 28 m2. que esta comunicado con la vivienda mediante ascensor. Se solicitan nominas, 1 mes de fianza a depositar ante el gobierno vasco y 2 meses de deposito adicional. Los honorarios de la agencia inmobiliaria son por cuenta del inquilino. No se admiten mascotas.",
+                                                "type": "PISO",
+                                                "m2": 43.0,
+                                                "numBedrooms": 1,
+                                                "numBathrooms": 1,
+                                                "hasElevator": true,
                                                 "hasPool": false,
                                                 "hasTerrace": true,
-                                                "hasGarage": true,
+                                                "hasGarage": false,
                                                 "owner": {
-                                                    "username": "blahivea",
-                                                    "fullName": "Beth Lahive",
-                                                    "email": "blahivea@goodreads.com",
-                                                    "phoneNumber": "77961241",
-                                                    "numPublications": 8
+                                                    "username": "eantoniutti0",
+                                                    "fullName": "Elicia Antoniutti",
+                                                    "email": "eantoniutti0@furl.net",
+                                                    "phoneNumber": "801329286",
+                                                    "numPublications": 5
                                                 }
                                             }
                                             """
@@ -691,14 +606,35 @@ public class DwellingController {
                                             {
                                                 "content": [
                                                     {
-                                                        "id": 90,
-                                                        "name": "Piso en San Antonio Abad - Poligono San Anton",
-                                                        "province": "Albacete",
-                                                        "image": "https://robohash.org/earummagniea.png?size=50x50&set=set1",
-                                                        "price": 650.86
+                                                        "id": 57,
+                                                        "name": "Piso en alquiler en FLOTA DE INDIAS",
+                                                        "province": "Sevilla",
+                                                        "image": "piso1.jpeg",
+                                                        "price": 765.22
+                                                    },
+                                                    {
+                                                        "id": 73,
+                                                        "name": "Piso en calle la Florida, 2",
+                                                        "province": "Sevilla",
+                                                        "image": "piso2.jpeg",
+                                                        "price": 1350.78
+                                                    },
+                                                    {
+                                                        "id": 94,
+                                                        "name": "Piso en el Centro",
+                                                        "province": "Sevilla",
+                                                        "image": "piso1.jpeg",
+                                                        "price": 746.91
+                                                    },
+                                                    {
+                                                        "id": 102,
+                                                        "name": "Chalet pareado en Av de Europa s/n",
+                                                        "province": "Sevilla",
+                                                        "image": "chalet2.jpeg",
+                                                        "price": 976.19
                                                     }
                                                 ],
-                                                "totalElements": 1,
+                                                "totalElements": 4,
                                                 "totalPages": 1,
                                                 "number": 0,
                                                 "size": 20
@@ -719,6 +655,119 @@ public class DwellingController {
     public PageDto<AllDwellingResponse> getDwellingsByProvince(@PathVariable Long id,
                                                                @PageableDefault(size = 20) Pageable pageable) {
         return new PageDto<>(dwellingService.findByProvinceId(id, pageable));
+    }
+
+    @Operation(summary = "Edita la imagen de una vivienda obtenida por su identificador")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha editado correctamente la imagen de la vivienda seleccionada",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = OneDwellingResponse.class),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            {
+                                                "id": 103,
+                                                "name": "Chalet Cuqui",
+                                                "province": "Sevilla",
+                                                "image": "chalet1.jpeg",
+                                                "price": 563.0,
+                                                "address": "C/ Sierpes Nº2, Sevilla",
+                                                "description": "Chalet muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
+                                                "type": "CHALET",
+                                                "m2": 34.0,
+                                                "numBedrooms": 3,
+                                                "numBathrooms": 1,
+                                                "hasElevator": true,
+                                                "hasPool": false,
+                                                "hasTerrace": true,
+                                                "hasGarage": false,
+                                                "owner": {
+                                                    "username": "eantoniutti0",
+                                                    "fullName": "Elicia Antoniutti",
+                                                    "email": "eantoniutti0@furl.net",
+                                                    "phoneNumber": "801329286",
+                                                    "numPublications": 6
+                                                }
+                                            }
+                                            """
+                            )})}),
+            @ApiResponse(responseCode = "400",
+                    description = "Ha habido algún error al editar la imagen de la vivienda",
+                    content = @Content),
+            @ApiResponse(responseCode = "401",
+                    description = "No tienes aurorización para realizar esta petición",
+                    content = @Content),
+            @ApiResponse(responseCode = "403",
+                    description = "Se ha expirado el token JWT o no tienes acceso para realizar esta petición debido a tu rol",
+                    content = @Content),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado la vivienda de la que se quiere editar su imagen",
+                    content = @Content)
+    })
+    @PutMapping("/{id}/image")
+    public OneDwellingResponse editImage(@Parameter(description = "Identificador de la vivienda a la que se le quiere editar la imagen")
+                                             @PathVariable Long id,
+                                         @RequestPart("file") MultipartFile file,
+                                         @AuthenticationPrincipal User user) {
+        Dwelling toEditImage = dwellingService.editDwellingImage(id, file, user);
+
+        return OneDwellingResponse.of(toEditImage);
+    }
+
+    @Operation(summary = "Elimina una imagen de una vivienda obtenida por su identificador")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha eliminado correctamente la imagen de la vivienda seleccionada",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = OneDwellingResponse.class),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            {
+                                                "id": 103,
+                                                "name": "Chalet Cuqui",
+                                                "province": "Sevilla",
+                                                "image": null,
+                                                "price": 563.0,
+                                                "address": "C/ Sierpes Nº2, Sevilla",
+                                                "description": "Chalet muy chulo que está muy chulo y sigue siendo chulo. Tiene habitaciones chulas y eso :)",
+                                                "type": "CHALET",
+                                                "m2": 34.0,
+                                                "numBedrooms": 3,
+                                                "numBathrooms": 1,
+                                                "hasElevator": true,
+                                                "hasPool": false,
+                                                "hasTerrace": true,
+                                                "hasGarage": false,
+                                                "owner": {
+                                                    "username": "eantoniutti0",
+                                                    "fullName": "Elicia Antoniutti",
+                                                    "email": "eantoniutti0@furl.net",
+                                                    "phoneNumber": "801329286",
+                                                    "numPublications": 6
+                                                }
+                                            }
+                                            """
+                            )})}),
+            @ApiResponse(responseCode = "400",
+                    description = "Ha habido algún error al eliminar la imagen de la vivienda",
+                    content = @Content),
+            @ApiResponse(responseCode = "401",
+                    description = "No tienes aurorización para realizar esta petición",
+                    content = @Content),
+            @ApiResponse(responseCode = "403",
+                    description = "Se ha expirado el token JWT o no tienes acceso para realizar esta petición debido a tu rol",
+                    content = @Content),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado la vivienda de la que se quiere eliminar su imagen",
+                    content = @Content)
+    })
+    @DeleteMapping("/{id}/image")
+    public OneDwellingResponse deleteDwellingImage(@Parameter(description = "Identificador de la vivienda a la que se le quiere eliminar la imagen")
+                                                       @PathVariable Long id,
+                                                   @AuthenticationPrincipal User user) {
+        Dwelling toDeleteImage = dwellingService.deleteDwellingImage(id, user);
+
+        return OneDwellingResponse.of(toDeleteImage);
     }
 
 }

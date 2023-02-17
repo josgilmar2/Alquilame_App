@@ -20,6 +20,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -44,7 +45,7 @@ public class UserController {
                                                     {
                                                         "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
                                                         "username": "eantoniutti0",
-                                                        "avatar": "https://robohash.org/estlaudantiumconsequatur.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Elicia Antoniutti",
                                                         "address": "20 Lindbergh Terrace",
                                                         "email": "eantoniutti0@furl.net",
@@ -55,18 +56,18 @@ public class UserController {
                                                     {
                                                         "id": "99ec6bb0-6c98-593c-812b-86ab4de48361",
                                                         "username": "rjersh1",
-                                                        "avatar": "https://robohash.org/aliquidatnatus.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Rivi Jersh",
                                                         "address": "1360 Burning Wood Park",
                                                         "email": "rjersh1@icq.com",
                                                         "phoneNumber": "210390904",
-                                                        "numPublications": 5,
+                                                        "numPublications": 6,
                                                         "createdAt": "25/09/2022 00:00:00"
                                                     },
                                                     {
                                                         "id": "3724f1a1-cfed-52ec-b1fa-9c41b6928648",
                                                         "username": "vhame2",
-                                                        "avatar": "https://robohash.org/veroquaecorporis.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Victor Hame",
                                                         "address": "05 Algoma Alley",
                                                         "email": "vhame2@plala.or.jp",
@@ -77,7 +78,7 @@ public class UserController {
                                                     {
                                                         "id": "0e1d860d-fc9d-5b38-8db0-769b64fdc9f9",
                                                         "username": "msincock3",
-                                                        "avatar": "https://robohash.org/explicabonostrumveniam.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Melitta Sincock",
                                                         "address": "4664 Clarendon Hill",
                                                         "email": "msincock3@purevolume.com",
@@ -88,7 +89,7 @@ public class UserController {
                                                     {
                                                         "id": "60fd46e5-e6a9-5f4f-851e-da2b18aec4af",
                                                         "username": "hwhistlecraft4",
-                                                        "avatar": "https://robohash.org/molestiaslaudantiumconsequatur.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Hilliary Whistlecraft",
                                                         "address": "2 Westerfield Plaza",
                                                         "email": "hwhistlecraft4@privacy.gov.au",
@@ -99,7 +100,7 @@ public class UserController {
                                                     {
                                                         "id": "ce802e0d-45d6-55ca-90f2-5dc19d03f327",
                                                         "username": "nchaffin5",
-                                                        "avatar": "https://robohash.org/idquout.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Norbie Chaffin",
                                                         "address": "854 Hermina Drive",
                                                         "email": "nchaffin5@loc.gov",
@@ -110,7 +111,7 @@ public class UserController {
                                                     {
                                                         "id": "41c242d6-1921-5ab5-9016-e1fefacd6e20",
                                                         "username": "ndominiak6",
-                                                        "avatar": "https://robohash.org/molestiasquoitaque.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Nikaniki Dominiak",
                                                         "address": "8967 Bunker Hill Circle",
                                                         "email": "ndominiak6@cpanel.net",
@@ -121,7 +122,7 @@ public class UserController {
                                                     {
                                                         "id": "1433977b-5d90-5506-b4f6-d6d6302e5107",
                                                         "username": "mfuncheon7",
-                                                        "avatar": "https://robohash.org/isteacumque.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Madge Funcheon",
                                                         "address": "335 Victoria Way",
                                                         "email": "mfuncheon7@cocolog-nifty.com",
@@ -132,7 +133,7 @@ public class UserController {
                                                     {
                                                         "id": "de4fab48-c431-54b6-ac87-3d5856774866",
                                                         "username": "cfarran8",
-                                                        "avatar": "https://robohash.org/nisidolorumiste.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Carmela Farran",
                                                         "address": "087 Vernon Parkway",
                                                         "email": "cfarran8@europa.eu",
@@ -143,7 +144,7 @@ public class UserController {
                                                     {
                                                         "id": "579c921e-0bc0-5142-82ea-b04cceb6dd97",
                                                         "username": "rfassbindler9",
-                                                        "avatar": "https://robohash.org/exquiiusto.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Ranique Fassbindler",
                                                         "address": "44207 Rieder Parkway",
                                                         "email": "rfassbindler9@wikia.com",
@@ -154,7 +155,7 @@ public class UserController {
                                                     {
                                                         "id": "3e35d4f4-7716-54b2-9bdf-805ac4f5b6f0",
                                                         "username": "blahivea",
-                                                        "avatar": "https://robohash.org/utquaeratfacere.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Beth Lahive",
                                                         "address": "916 Moland Hill",
                                                         "email": "blahivea@goodreads.com",
@@ -165,7 +166,7 @@ public class UserController {
                                                     {
                                                         "id": "6c6f05bc-ec76-5476-ad6e-26a30ee33609",
                                                         "username": "dmckeanb",
-                                                        "avatar": "https://robohash.org/aliasidexercitationem.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Domeniga McKean",
                                                         "address": "921 Artisan Drive",
                                                         "email": "dmckeanb@google.nl",
@@ -176,7 +177,7 @@ public class UserController {
                                                     {
                                                         "id": "7b48e939-d701-5a27-9c92-468c2a534bf8",
                                                         "username": "bslixbyc",
-                                                        "avatar": "https://robohash.org/evenietnonest.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Bonita Slixby",
                                                         "address": "528 Mayfield Crossing",
                                                         "email": "bslixbyc@youtube.com",
@@ -187,7 +188,7 @@ public class UserController {
                                                     {
                                                         "id": "e78192f9-31db-577a-879d-1a1e733f506f",
                                                         "username": "ftustind",
-                                                        "avatar": "https://robohash.org/necessitatibusquiaprovident.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Frederico Tustin",
                                                         "address": "52104 Portage Street",
                                                         "email": "ftustind@imgur.com",
@@ -198,7 +199,7 @@ public class UserController {
                                                     {
                                                         "id": "de39ff65-266c-57ab-8b5f-f8b8aac4534c",
                                                         "username": "draimbaulde",
-                                                        "avatar": "https://robohash.org/doloremquesiteum.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Darell Raimbauld",
                                                         "address": "37266 Oxford Crossing",
                                                         "email": "draimbaulde@samsung.com",
@@ -209,7 +210,7 @@ public class UserController {
                                                     {
                                                         "id": "75577a8a-c151-528a-ac2f-4273bff9f73d",
                                                         "username": "bbrennanf",
-                                                        "avatar": "https://robohash.org/sintexplicaboqui.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Brena Brennan",
                                                         "address": "88 Morrow Crossing",
                                                         "email": "bbrennanf@addtoany.com",
@@ -220,7 +221,7 @@ public class UserController {
                                                     {
                                                         "id": "a5c05234-df87-5fbf-bc6c-27ceaa162e51",
                                                         "username": "dcarsg",
-                                                        "avatar": "https://robohash.org/iureeumdicta.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Dexter Cars",
                                                         "address": "3 Waubesa Circle",
                                                         "email": "dcarsg@sfgate.com",
@@ -231,7 +232,7 @@ public class UserController {
                                                     {
                                                         "id": "f87239fd-e902-5cf7-8e9e-4b85bf5d323d",
                                                         "username": "mornizh",
-                                                        "avatar": "https://robohash.org/nesciuntodiodolores.png?size=50x50&set=set1",
+                                                        "avatar": "avatar.jpeg",
                                                         "fullName": "Marney Orniz",
                                                         "address": "8 Golf Course Way",
                                                         "email": "mornizh@fema.gov",
@@ -242,7 +243,7 @@ public class UserController {
                                                     {
                                                         "id": "5bd0ab0d-7b12-5485-a1c2-83d3d463add8",
                                                         "username": "llahivei",
-                                                        "avatar": "https://robohash.org/nihilautemdolores.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Lavinia Lahive",
                                                         "address": "4 Manufacturers Point",
                                                         "email": "llahivei@tumblr.com",
@@ -253,7 +254,7 @@ public class UserController {
                                                     {
                                                         "id": "7ede3dc5-670e-57a7-a5f1-c8c6d15f9b24",
                                                         "username": "rkilcoyne2c",
-                                                        "avatar": "https://robohash.org/nonrepudiandaeaut.png?size=50x50&set=set1",
+                                                        "avatar": "avatar2.png",
                                                         "fullName": "Robena Kilcoyne",
                                                         "address": "29 Washington Crossing",
                                                         "email": "rkilcoyne2c@nbcnews.com",
@@ -297,7 +298,7 @@ public class UserController {
                                             {
                                                 "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
                                                 "username": "eantoniutti0",
-                                                "avatar": "https://robohash.org/estlaudantiumconsequatur.png?size=50x50&set=set1",
+                                                "avatar": "avatar2.png",
                                                 "fullName": "Elicia Antoniutti",
                                                 "address": "20 Lindbergh Terrace",
                                                 "email": "eantoniutti0@furl.net",
@@ -324,7 +325,7 @@ public class UserController {
         return UserResponse.fromUser(result);
     }
 
-    @Operation(summary = "Obtiene todas las viviendas favoritad paginadas del usuario autenticado")
+    @Operation(summary = "Obtiene todas las viviendas favoritas paginadas del usuario autenticado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Se ha obtenido correctamente la lista de viviendas paginadas del usuario autenticado",
@@ -335,11 +336,11 @@ public class UserController {
                                             {
                                                 "content": [
                                                     {
-                                                        "id": 53,
-                                                        "name": "Estancia Campos De Lino",
-                                                        "province": "Guadalajara",
-                                                        "image": "https://robohash.org/laboreullamaut.png?size=50x50&set=set1",
-                                                        "price": 803.38
+                                                        "id": 67,
+                                                        "name": "El Refugio, Casa en calle Albahaca Nº36",
+                                                        "province": "Avila",
+                                                        "image": "casa.jpeg",
+                                                        "price": 900.77
                                                     }
                                                 ],
                                                 "totalElements": 1,
@@ -373,9 +374,8 @@ public class UserController {
                             value = """
                                     {
                                          "fullName": "José Luis Gil Martín",
-                                         "address": "",
+                                         "address": "C/ Mi casa Nº2",
                                          "phoneNumber":"654897204",
-                                         "avatar": ""
                                      }
                                     """
                     )})}
@@ -390,9 +390,9 @@ public class UserController {
                                             {
                                                 "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
                                                 "username": "eantoniutti0",
-                                                "avatar": "",
+                                                "avatar": "avatar2.png",
                                                 "fullName": "José Luis Gil Martín",
-                                                "address": "",
+                                                "address": "C/ Mi casa Nº2",
                                                 "email": "eantoniutti0@furl.net",
                                                 "phoneNumber": "654897204",
                                                 "numPublications": 5,
@@ -463,7 +463,7 @@ public class UserController {
                                             {
                                                 "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
                                                 "username": "eantoniutti0",
-                                                "avatar": "https://robohash.org/estlaudantiumconsequatur.png?size=50x50&set=set1",
+                                                "avatar": "avatar2.png",
                                                 "fullName": "Elicia Antoniutti",
                                                 "address": "20 Lindbergh Terrace",
                                                 "email": "eantoniutti0@furl.net",
@@ -491,6 +491,88 @@ public class UserController {
         User toEditPassword = userService.editPassword(dto, user);
 
         return UserResponse.fromUser(toEditPassword);
+    }
+
+    @Operation(summary = "Edición del avatar del usuario autenticado")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha editado correctamente el avatar del usuario autenticado",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserResponse.class),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            {
+                                                "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
+                                                "username": "eantoniutti0",
+                                                "avatar": "avatar2.png",
+                                                "fullName": "Elicia Antoniutti",
+                                                "address": "20 Lindbergh Terrace",
+                                                "email": "eantoniutti0@furl.net",
+                                                "phoneNumber": "801329286",
+                                                "numPublications": 5,
+                                                "createdAt": "03/09/2022 00:00:00"
+                                            }
+                                            """
+                            )})}),
+            @ApiResponse(responseCode = "400",
+                    description = "Ha habido algún error al editar el avatar del usuario autenticado",
+                    content = @Content),
+            @ApiResponse(responseCode = "401",
+                    description = "No tienes aurorización para realizar esta petición",
+                    content = @Content),
+            @ApiResponse(responseCode = "403",
+                    description = "Se ha expirado el token JWT o no tienes acceso para realizar esta petición debido a tu rol",
+                    content = @Content),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado el usaurio al que se quiere editar su avatar",
+                    content = @Content)
+    })
+    @PutMapping("/changeAvatar")
+    public UserResponse editAvatar(@RequestPart("file") MultipartFile file, @AuthenticationPrincipal User user) {
+        User toEditAvatar = userService.editAvatar(file, user);
+
+        return UserResponse.fromUser(toEditAvatar);
+    }
+
+    @Operation(summary = "Edición del avatar del usuario autenticado")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha eliminado correctamente el avatar del usuario autenticado",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserResponse.class),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            {
+                                                "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
+                                                "username": "eantoniutti0",
+                                                "avatar": null,
+                                                "fullName": "Elicia Antoniutti",
+                                                "address": "20 Lindbergh Terrace",
+                                                "email": "eantoniutti0@furl.net",
+                                                "phoneNumber": "801329286",
+                                                "numPublications": 5,
+                                                "createdAt": "03/09/2022 00:00:00"
+                                            }
+                                            """
+                            )})}),
+            @ApiResponse(responseCode = "400",
+                    description = "Ha habido algún error al eliminar el avatar del usuario autenticado",
+                    content = @Content),
+            @ApiResponse(responseCode = "401",
+                    description = "No tienes aurorización para realizar esta petición",
+                    content = @Content),
+            @ApiResponse(responseCode = "403",
+                    description = "Se ha expirado el token JWT o no tienes acceso para realizar esta petición debido a tu rol",
+                    content = @Content),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado el usaurio al que se quiere eliminar su avatar",
+                    content = @Content)
+    })
+    @DeleteMapping("/deleteAvatar")
+    public UserResponse deleteAvatar(@AuthenticationPrincipal User user) {
+        User toDeleteAvatar = userService.deleteAvatar(user);
+
+        return UserResponse.fromUser(toDeleteAvatar);
     }
 
 }
