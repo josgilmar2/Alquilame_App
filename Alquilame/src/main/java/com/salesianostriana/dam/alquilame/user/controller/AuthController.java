@@ -20,10 +20,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -45,11 +43,10 @@ public class AuthController {
                 examples = {@ExampleObject(
                         value = """
                                 {
-                                    "username": "user1",
-                                    "email": "admin@google.com",
+                                    "username": "user2",
+                                    "email": "admin@yahoo.com",
                                     "address": "C/ Mi Casa Nº2",
-                                    "avatar": "",
-                                    "phoneNumber": "639856235",
+                                    "phoneNumber": "678956782",
                                     "fullName": "Luismi López",
                                     "password": "DFGhjkl.3",
                                     "verifyPassword": "DFGhjkl.3"
@@ -65,15 +62,15 @@ public class AuthController {
                             examples = {@ExampleObject(
                                     value = """
                                             {
-                                                "id": "ac1b0360-8659-1261-8186-597290470000",
-                                                "username": "user1",
-                                                "avatar": "",
+                                                "id": "c0a80135-865c-17ab-8186-5c8bf18b0000",
+                                                "username": "user2",
+                                                "avatar": "avatar_164275.jpeg",
                                                 "fullName": "Luismi López",
                                                 "address": "C/ Mi Casa Nº2",
-                                                "email": "admin@google.com",
-                                                "phoneNumber": "698563214",
+                                                "email": "admin@yahoo.com",
+                                                "phoneNumber": "678956782",
                                                 "numPublications": 0,
-                                                "createdAt": "16/02/2023 09:58:45"
+                                                "createdAt": "17/02/2023 00:25:20"
                                             }
                                             """
                             )})}),
@@ -82,8 +79,9 @@ public class AuthController {
                     content = @Content)
     })
     @PostMapping("/register/inquilino")
-    public ResponseEntity<UserResponse> createUserWithInquilinoRole(@Valid @RequestBody CreateUserDto dto) {
-        User user = userService.createUserWithInquilinoRole(dto);
+    public ResponseEntity<UserResponse> createUserWithInquilinoRole(@Valid @RequestPart("inquilino") CreateUserDto dto,
+                                                                    @RequestPart("file") MultipartFile file) {
+        User user = userService.createUserWithInquilinoRole(dto, file);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(UserResponse.fromUser(user));
@@ -99,7 +97,6 @@ public class AuthController {
                                     "username": "user1",
                                     "email": "admin@google.com",
                                     "address": "C/ Mi Casa Nº2",
-                                    "avatar": "",
                                     "phoneNumber": "639856235",
                                     "fullName": "Luismi López",
                                     "password": "DFGhjkl.3",
@@ -116,15 +113,15 @@ public class AuthController {
                             examples = {@ExampleObject(
                                     value = """
                                             {
-                                                "id": "ac1b0360-8659-1261-8186-597290470000",
+                                                "id": "c0a80135-865c-17ab-8186-5c8bf18b0000",
                                                 "username": "user1",
-                                                "avatar": "",
+                                                "avatar": "avatar.jpeg",
                                                 "fullName": "Luismi López",
                                                 "address": "C/ Mi Casa Nº2",
                                                 "email": "admin@google.com",
                                                 "phoneNumber": "698563214",
                                                 "numPublications": 0,
-                                                "createdAt": "16/02/2023 09:58:45"
+                                                "createdAt": "17/02/2023 00:25:20"
                                             }
                                             """
                             )})}),
@@ -133,8 +130,9 @@ public class AuthController {
                     content = @Content)
     })
     @PostMapping("/register/propietario")
-    public ResponseEntity<UserResponse> createUserWithPropietarioRole(@Valid @RequestBody CreateUserDto dto) {
-        User user = userService.createUSerWitPropietarioRole(dto);
+    public ResponseEntity<UserResponse> createUserWithPropietarioRole(@Valid @RequestPart("propietario") CreateUserDto dto,
+                                                                      @RequestPart("file")MultipartFile file) {
+        User user = userService.createUSerWitPropietarioRole(dto, file);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(UserResponse.fromUser(user));
@@ -162,7 +160,7 @@ public class AuthController {
                                         {
                                             "id": "2bd9e760-a11e-5d8f-9641-1c54e79c57a1",
                                             "username": "eantoniutti0",
-                                            "avatar": "https://robohash.org/estlaudantiumconsequatur.png?size=50x50&set=set1",
+                                            "avatar": "avatar2.png",
                                             "fullName": "Elicia Antoniutti",
                                             "address": "20 Lindbergh Terrace",
                                             "email": "eantoniutti0@furl.net",

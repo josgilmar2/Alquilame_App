@@ -44,12 +44,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 1,
                                                         "name": "A Coruña",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 89,
-                                                                "name": "Casa independiente en IÃ±as, cerca centro comercial",
-                                                                "province": "A Coruña",
-                                                                "image": "https://robohash.org/perferendisfugiatqui.png?size=50x50&set=set1",
+                                                                "id": 90,
+                                                                "name": "Casa independiente en Iñas, cerca centro comercial",
+                                                                "province": A Coruña,
+                                                                "image": "casa.jpeg",
                                                                 "price": 700.35
                                                             }
                                                         ]
@@ -57,12 +57,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 2,
                                                         "name": "Alava",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 91,
+                                                                "id": 92,
                                                                 "name": "Chalet adosado en calle Gorbea, 1",
-                                                                "province": "Alava",
-                                                                "image": "https://robohash.org/aliasestvitae.png?size=50x50&set=set1",
+                                                                "province": Alava,
+                                                                "image": "chalet.jpeg",
                                                                 "price": 1236.7
                                                             }
                                                         ]
@@ -70,12 +70,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 3,
                                                         "name": "Albacete",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 90,
-                                                                "name": "Piso en San Antonio Abad - PolÃ­gono San AntÃ³n",
-                                                                "province": "Albacete",
-                                                                "image": "https://robohash.org/earummagniea.png?size=50x50&set=set1",
+                                                                "id": 91,
+                                                                "name": "Piso en San Antonio Abad - Poligono San Anton",
+                                                                "province": Albacete,
+                                                                "image": "piso1.jpeg",
                                                                 "price": 650.86
                                                             }
                                                         ]
@@ -83,12 +83,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 4,
                                                         "name": "Alicante",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 74,
+                                                                "id": 75,
                                                                 "name": "Casa independiente en calle Galia",
-                                                                "province": "Alicante",
-                                                                "image": "https://robohash.org/molestiaeenimblanditiis.png?size=50x50&set=set1",
+                                                                "province": Alicante,
+                                                                "image": "casa1.jpg",
                                                                 "price": 6000.12
                                                             }
                                                         ]
@@ -96,17 +96,25 @@ public class ProvinceController {
                                                     {
                                                         "id": 5,
                                                         "name": "Almeria",
-                                                        "dwelling": []
+                                                        "dwellings": [
+                                                            {
+                                                                "id": 61,
+                                                                "name": "Piso en Zapillo",
+                                                                "province": Almeria,
+                                                                "image": "piso1.jpeg",
+                                                                "price": 550.65
+                                                            }
+                                                        ]
                                                     },
                                                     {
                                                         "id": 6,
                                                         "name": "Asturias",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 68,
+                                                                "id": 69,
                                                                 "name": "Casa independiente en calle Naon, 20 A",
-                                                                "province": "Asturias",
-                                                                "image": "https://robohash.org/velquaequia.png?size=50x50&set=set1",
+                                                                "province": Asturias,
+                                                                "image": "casa.jpeg",
                                                                 "price": 650.24
                                                             }
                                                         ]
@@ -114,12 +122,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 7,
                                                         "name": "Avila",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 66,
-                                                                "name": "El Refugio, Casa en calle Albahaca NÂº36",
-                                                                "province": "Avila",
-                                                                "image": "https://robohash.org/etquamcorrupti.png?size=50x50&set=set1",
+                                                                "id": 67,
+                                                                "name": "El Refugio, Casa en calle Albahaca Nº36",
+                                                                "province": Avila,
+                                                                "image": "casa.jpeg",
                                                                 "price": 900.77
                                                             }
                                                         ]
@@ -127,12 +135,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 8,
                                                         "name": "Badajoz",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 85,
-                                                                "name": "Casa adosado en calle CASTILLO DE ALMORCHÃ“N",
-                                                                "province": "Badajoz",
-                                                                "image": "https://robohash.org/eosadipiscidistinctio.png?size=50x50&set=set1",
+                                                                "id": 86,
+                                                                "name": "Casa adosado en calle CASTILLO DE ALMORCHoN",
+                                                                "province": Badajoz,
+                                                                "image": "casa2.jpeg",
                                                                 "price": 900.96
                                                             }
                                                         ]
@@ -140,31 +148,31 @@ public class ProvinceController {
                                                     {
                                                         "id": 9,
                                                         "name": "Baleares",
-                                                        "dwelling": []
+                                                        "dwellings": []
                                                     },
                                                     {
                                                         "id": 10,
                                                         "name": "Barcelona",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
                                                                 "id": 58,
                                                                 "name": "Piso barato en Barcelona",
-                                                                "province": "Barcelona",
-                                                                "image": "https://robohash.org/eoseaqueest.png?size=50x50&set=set1",
+                                                                "province": Barcelona,
+                                                                "image": "piso2.jpeg",
                                                                 "price": 788.51
                                                             },
                                                             {
-                                                                "id": 88,
+                                                                "id": 89,
                                                                 "name": "Casa independiente en Passatge Oriol",
-                                                                "province": "Barcelona",
-                                                                "image": "https://robohash.org/exeosvoluptatem.png?size=50x50&set=set1",
+                                                                "province": Barcelona,
+                                                                "image": "casa2.jpeg",
                                                                 "price": 1529.37
                                                             },
                                                             {
-                                                                "id": 97,
+                                                                "id": 98,
                                                                 "name": "Piso en VARSOVIA",
-                                                                "province": "Barcelona",
-                                                                "image": "https://robohash.org/voluptatibuserrorillo.png?size=50x50&set=set1",
+                                                                "province": Barcelona,
+                                                                "image": "piso.jpeg",
                                                                 "price": 886.91
                                                             }
                                                         ]
@@ -172,22 +180,22 @@ public class ProvinceController {
                                                     {
                                                         "id": 11,
                                                         "name": "Bizkaia",
-                                                        "dwelling": []
+                                                        "dwellings": []
                                                     },
                                                     {
                                                         "id": 12,
                                                         "name": "Burgos",
-                                                        "dwelling": []
+                                                        "dwellings": []
                                                     },
                                                     {
                                                         "id": 13,
                                                         "name": "Caceres",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
                                                                 "id": 54,
                                                                 "name": "Piso Acogedor",
-                                                                "province": "Caceres",
-                                                                "image": "https://robohash.org/veniamiustoqui.png?size=50x50&set=set1",
+                                                                "province": Caceres,
+                                                                "image": "piso.jpeg",
                                                                 "price": 450.0
                                                             }
                                                         ]
@@ -195,12 +203,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 14,
                                                         "name": "Cadiz",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 65,
+                                                                "id": 66,
                                                                 "name": "Piso en Sagasta",
-                                                                "province": "Cadiz",
-                                                                "image": "https://robohash.org/quidemplaceatconsequatur.png?size=50x50&set=set1",
+                                                                "province": Cadiz,
+                                                                "image": "piso2.jpeg",
                                                                 "price": 600.14
                                                             }
                                                         ]
@@ -208,12 +216,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 15,
                                                         "name": "Cantabria",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 62,
+                                                                "id": 63,
                                                                 "name": "Casa adosado en calle Vicente Trueba, 7",
-                                                                "province": "Cantabria",
-                                                                "image": "https://robohash.org/necessitatibusanimirerum.png?size=50x50&set=set1",
+                                                                "province": Cantabria,
+                                                                "image": "casa1.jpg",
                                                                 "price": 1200.44
                                                             }
                                                         ]
@@ -221,12 +229,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 16,
                                                         "name": "Castellon",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 87,
+                                                                "id": 88,
                                                                 "name": "Chalet independiente en calle de la Muntanyeta de Sant Josep, 26",
-                                                                "province": "Castellon",
-                                                                "image": "https://robohash.org/quisabvoluptatem.png?size=50x50&set=set1",
+                                                                "province": Castellon,
+                                                                "image": "chalet1.jpeg",
                                                                 "price": 900.13
                                                             }
                                                         ]
@@ -234,17 +242,17 @@ public class ProvinceController {
                                                     {
                                                         "id": 17,
                                                         "name": "Ceuta",
-                                                        "dwelling": []
+                                                        "dwellings": []
                                                     },
                                                     {
                                                         "id": 18,
                                                         "name": "Ciudad Real",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 76,
+                                                                "id": 77,
                                                                 "name": "Casa adosada en Pau 2 - 600",
-                                                                "province": "Ciudad Real",
-                                                                "image": "https://robohash.org/atoditest.png?size=50x50&set=set1",
+                                                                "province": Ciudad Real,
+                                                                "image": "casa2.jpeg",
                                                                 "price": 525.7
                                                             }
                                                         ]
@@ -252,12 +260,12 @@ public class ProvinceController {
                                                     {
                                                         "id": 19,
                                                         "name": "Cordoba",
-                                                        "dwelling": [
+                                                        "dwellings": [
                                                             {
-                                                                "id": 71,
+                                                                "id": 72,
                                                                 "name": "Chalet independiente en calle Junco, 1",
-                                                                "province": "Cordoba",
-                                                                "image": "https://robohash.org/commodiametnatus.png?size=50x50&set=set1",
+                                                                "province": Cordoba,
+                                                                "image": "chalet2.jpeg",
                                                                 "price": 1250.36
                                                             }
                                                         ]
@@ -265,7 +273,7 @@ public class ProvinceController {
                                                     {
                                                         "id": 20,
                                                         "name": "Cuenca",
-                                                        "dwelling": []
+                                                        "dwellings": []
                                                     }
                                                 ],
                                                 "totalElements": 52,
@@ -303,10 +311,10 @@ public class ProvinceController {
                                                 "name": "Albacete",
                                                 "dwellings": [
                                                     {
-                                                        "id": 90,
-                                                        "name": "Piso en San Antonio Abad - Polígono San Antón",
-                                                        "province": "Albacete",
-                                                        "image": "https://robohash.org/earummagniea.png?size=50x50&set=set1",
+                                                        "id": 91,
+                                                        "name": "Piso en San Antonio Abad - Poligono San Anton",
+                                                        "province": Albacete,
+                                                        "image": "piso1.jpeg",
                                                         "price": 650.86
                                                     }
                                                 ]
@@ -407,7 +415,7 @@ public class ProvinceController {
                                                         "id": 90,
                                                         "name": "Piso en San Antonio Abad - Polígono San Antón",
                                                         "province": null,
-                                                        "image": "https://robohash.org/earummagniea.png?size=50x50&set=set1",
+                                                        "image": "piso1.jpeg",
                                                         "price": 650.86
                                                     }
                                                 ]

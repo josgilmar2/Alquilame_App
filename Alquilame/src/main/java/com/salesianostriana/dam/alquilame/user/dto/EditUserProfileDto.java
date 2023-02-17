@@ -24,8 +24,4 @@ public class EditUserProfileDto {
     @UniquePhoneNumber(message = "{createUserDto.phoneNumber.unique}")
     @CorrectPhoneNumber(message = "{createUserDto.phoneNumber.correct}")
     private String phoneNumber;
-
-    private String avatar;
-
-    //PODRÍA ELIMINAR EL AVATAR PARA LUEGO HACER PETICIÓN PUT A LA HORA DE SUBIR FICHERO
 }

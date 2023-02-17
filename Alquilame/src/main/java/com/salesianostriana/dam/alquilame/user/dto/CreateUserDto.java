@@ -32,7 +32,6 @@ public class CreateUserDto {
     @UniqueEmail(message = "{createUserDto.email.unique}")
     private String email;
 
-
     private String address;
 
     @NotEmpty(message = "{createUserDto.phoneNumber.notEmpty}")
@@ -43,7 +42,7 @@ public class CreateUserDto {
     private String avatar;
 
     @StrongPassword
-    @NotEmpty(message = "{a}")
+    @NotEmpty(message = "{createUserDto.password.notempty}")
     private String password;
 
     @NotEmpty(message = "{createUserDto.verifyPassword.notempty}")
