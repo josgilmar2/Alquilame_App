@@ -16,6 +16,7 @@ import com.salesianostriana.dam.alquilame.exception.province.ProvinceBadRequestD
 import com.salesianostriana.dam.alquilame.exception.province.ProvinceNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.storage.FileEmptyException;
 import com.salesianostriana.dam.alquilame.exception.storage.StorageException;
+import com.salesianostriana.dam.alquilame.exception.user.PasswordNotMatchException;
 import com.salesianostriana.dam.alquilame.exception.user.UserDwellingsNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.UserNotFoundException;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -144,6 +145,11 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(FileEmptyException.class)
     public ResponseEntity<?> handleFileEmptyException(FileEmptyException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(PasswordNotMatchException.class)
+    public ResponseEntity<?> handlePasswordNotMatchException(PasswordNotMatchException ex, WebRequest request) {
         return buildApiError(ex.getMessage(), request, HttpStatus.BAD_REQUEST);
     }
 
