@@ -17,7 +17,7 @@ public class UserResponse {
 
     protected String id, username, avatar, fullName, address, email, phoneNumber;
 
-    protected int numPublications;
+    protected int numPublications, numLiked;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     protected LocalDateTime createdAt;
@@ -33,6 +33,7 @@ public class UserResponse {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .numPublications(user.getDwellings().size())
+                .numLiked(user.getFavourites().size())
                 .createdAt(user.getCreatedAt())
                 .build();
     }
