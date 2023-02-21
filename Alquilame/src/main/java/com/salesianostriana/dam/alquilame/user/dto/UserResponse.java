@@ -2,6 +2,7 @@ package com.salesianostriana.dam.alquilame.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salesianostriana.dam.alquilame.user.model.User;
+import com.salesianostriana.dam.alquilame.user.model.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.EnumSet;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
@@ -17,7 +20,10 @@ public class UserResponse {
 
     protected String id, username, avatar, fullName, address, email, phoneNumber;
 
-    protected int numPublications, numLiked;
+    private String role;
+    protected int numPublications;
+
+    private int numLiked;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     protected LocalDateTime createdAt;
@@ -32,10 +38,17 @@ public class UserResponse {
                 .address(user.getAddress())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
+                .role(convertRoleToString(user.getRoles()))
                 .numPublications(user.getDwellings().size())
                 .numLiked(user.getFavourites().size())
                 .createdAt(user.getCreatedAt())
                 .build();
+    }
+
+    public static String convertRoleToString(EnumSet<UserRole> roles) {
+        return roles.stream()
+                .map(UserRole::name)
+                .collect(Collectors.joining(","));
     }
 
 }
