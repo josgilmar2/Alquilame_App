@@ -79,9 +79,8 @@ public class AuthController {
                     content = @Content)
     })
     @PostMapping("/register/inquilino")
-    public ResponseEntity<UserResponse> createUserWithInquilinoRole(@Valid @RequestPart("inquilino") CreateUserDto dto,
-                                                                    @RequestPart("file") MultipartFile file) {
-        User user = userService.createUserWithInquilinoRole(dto, file);
+    public ResponseEntity<UserResponse> createUserWithInquilinoRole(@Valid @RequestBody CreateUserDto dto) {
+        User user = userService.createUserWithInquilinoRole(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(UserResponse.fromUser(user));
@@ -130,9 +129,8 @@ public class AuthController {
                     content = @Content)
     })
     @PostMapping("/register/propietario")
-    public ResponseEntity<UserResponse> createUserWithPropietarioRole(@Valid @RequestPart("propietario") CreateUserDto dto,
-                                                                      @RequestPart("file")MultipartFile file) {
-        User user = userService.createUSerWitPropietarioRole(dto, file);
+    public ResponseEntity<UserResponse> createUserWithPropietarioRole(@Valid @RequestBody CreateUserDto dto) {
+        User user = userService.createUSerWitPropietarioRole(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(UserResponse.fromUser(user));

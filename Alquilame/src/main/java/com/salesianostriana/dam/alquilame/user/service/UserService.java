@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.alquilame.user.service;
 
 import com.salesianostriana.dam.alquilame.dwelling.dto.AllDwellingResponse;
-import com.salesianostriana.dam.alquilame.dwelling.model.Dwelling;
-import com.salesianostriana.dam.alquilame.dwelling.repo.DwellingRepository;
 import com.salesianostriana.dam.alquilame.exception.EmptyListNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.favourite.FavouriteNotFoundException;
 import com.salesianostriana.dam.alquilame.exception.user.PasswordNotMatchException;
@@ -38,9 +36,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final StorageService storageService;
 
-    public User createUser(CreateUserDto dto, EnumSet<UserRole> roles, MultipartFile file) {
-
-        String filename = storageService.store(file);
+    public User createUser(CreateUserDto dto, EnumSet<UserRole> roles) {
 
         User result = User.builder()
                 .username(dto.getUsername())
@@ -48,7 +44,6 @@ public class UserService {
                 .email(dto.getEmail())
                 .address(dto.getAddress())
                 .phoneNumber(dto.getPhoneNumber())
-                .avatar(filename)
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .roles(roles)
                 .build();
@@ -56,12 +51,12 @@ public class UserService {
         return userRepository.save(result);
     }
 
-    public User createUserWithInquilinoRole(CreateUserDto dto, MultipartFile file) {
-        return createUser(dto, EnumSet.of(UserRole.INQUILINO), file);
+    public User createUserWithInquilinoRole(CreateUserDto dto) {
+        return createUser(dto, EnumSet.of(UserRole.INQUILINO));
     }
 
-    public User createUSerWitPropietarioRole(CreateUserDto dto, MultipartFile file) {
-        return createUser(dto, EnumSet.of(UserRole.PROPIETARIO), file);
+    public User createUSerWitPropietarioRole(CreateUserDto dto) {
+        return createUser(dto, EnumSet.of(UserRole.PROPIETARIO));
     }
 
     public Optional<User> findByUsername(String username) {

@@ -23,8 +23,6 @@ public class UserResponse {
     private String role;
     protected int numPublications;
 
-    private int numLiked;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     protected LocalDateTime createdAt;
 
@@ -40,7 +38,6 @@ public class UserResponse {
                 .phoneNumber(user.getPhoneNumber())
                 .role(convertRoleToString(user.getRoles()))
                 .numPublications(user.getDwellings().size())
-                .numLiked(user.getFavourites().size())
                 .createdAt(user.getCreatedAt())
                 .build();
     }

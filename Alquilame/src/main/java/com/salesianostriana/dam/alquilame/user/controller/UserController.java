@@ -8,7 +8,6 @@ import com.salesianostriana.dam.alquilame.user.dto.UserResponse;
 import com.salesianostriana.dam.alquilame.user.model.User;
 import com.salesianostriana.dam.alquilame.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -493,7 +491,7 @@ public class UserController {
         return UserResponse.fromUser(toEditPassword);
     }
 
-    @Operation(summary = "Edición del avatar del usuario autenticado")
+    @Operation(summary = "Edita del avatar del usuario autenticado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Se ha editado correctamente el avatar del usuario autenticado",
@@ -534,7 +532,7 @@ public class UserController {
         return UserResponse.fromUser(toEditAvatar);
     }
 
-    @Operation(summary = "Edición del avatar del usuario autenticado")
+    @Operation(summary = "Elimina el avatar del usuario autenticado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Se ha eliminado correctamente el avatar del usuario autenticado",
