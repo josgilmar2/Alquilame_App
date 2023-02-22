@@ -41,7 +41,7 @@ public class DwellingRequest {
 
     private boolean hasElevator, hasPool, hasTerrace, hasGarage;
 
-    @NotNull(message = "{dwellingRequest.provinceId.notnull}")
-    private Long provinceId;
+    @NotEmpty(message = "{dwellingRequest.provinceName.notempty}")
+    private String provinceName;
 
 }

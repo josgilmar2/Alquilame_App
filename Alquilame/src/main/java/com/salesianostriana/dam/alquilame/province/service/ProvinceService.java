@@ -56,4 +56,9 @@ public class ProvinceService {
         provinceRepository.deleteById(id);
     }
 
+    public Province findByName(String name) {
+        return provinceRepository.findByName(name)
+                .orElseThrow(() -> new ProvinceNotFoundException(name));
+    }
+
 }

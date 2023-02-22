@@ -398,10 +398,9 @@ public class DwellingController {
                     content = @Content),
     })
     @PostMapping("/")
-    public ResponseEntity<OneDwellingResponse> createDwelling(@Valid @RequestPart("dwelling") DwellingRequest dto,
-                                                              @AuthenticationPrincipal User user,
-                                                              @RequestPart("file") MultipartFile file) {
-        Dwelling created = dwellingService.createDwelling(dto, user, file);
+    public ResponseEntity<OneDwellingResponse> createDwelling(@Valid @RequestBody DwellingRequest dto,
+                                                              @AuthenticationPrincipal User user) {
+        Dwelling created = dwellingService.createDwelling(dto, user);
 
         URI createdURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()

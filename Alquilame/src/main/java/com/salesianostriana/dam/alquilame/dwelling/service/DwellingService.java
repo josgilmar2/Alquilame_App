@@ -72,18 +72,16 @@ public class DwellingService {
         return result;
     }
 
-    public Dwelling createDwelling(DwellingRequest dto, User user, MultipartFile file) {
+    public Dwelling createDwelling(DwellingRequest dto, User user) {
 
-        Province toAdd = provinceService.findById(dto.getProvinceId());
+        Province toAdd = provinceService.findByName(dto.getProvinceName());
         User user1 = userService.findUserWithDwellings(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
-        String filename = storageService.store(file);
 
         Dwelling result = Dwelling.builder()
                 .name(dto.getName())
                 .address(dto.getAddress())
                 .description(dto.getDescription())
-                .image(filename)
                 .type(dto.getType())
                 .price(dto.getPrice())
                 .m2(dto.getM2())
@@ -103,7 +101,7 @@ public class DwellingService {
     }
     public Dwelling editDwelling(Long id, DwellingRequest dto, User user) {
 
-        Province toEdit = provinceService.findById(dto.getProvinceId());
+        Province toEdit = provinceService.findByName(dto.getProvinceName());
         User user1 = userService.findUserWithDwellings(user.getId())
                 .orElseThrow(() -> new UserNotFoundException(user.getId()));
 
