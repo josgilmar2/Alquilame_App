@@ -525,7 +525,7 @@ public class UserController {
                     description = "No se ha encontrado el usaurio al que se quiere editar su avatar",
                     content = @Content)
     })
-    @PutMapping("/changeAvatar")
+    @PostMapping("/changeAvatar")
     public UserResponse editAvatar(@RequestPart("file") MultipartFile file, @AuthenticationPrincipal User user) {
         User toEditAvatar = userService.editAvatar(file, user);
 

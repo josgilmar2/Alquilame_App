@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @SuperBuilder
 public class LoginResponse extends UserResponse{
 
-    private String role;
     private String token;
 
     public LoginResponse(UserResponse userResponse) {

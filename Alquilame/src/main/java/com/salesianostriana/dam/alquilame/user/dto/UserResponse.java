@@ -18,9 +18,8 @@ import java.util.stream.Collectors;
 @SuperBuilder
 public class UserResponse {
 
-    protected String id, username, avatar, fullName, address, email, phoneNumber;
+    protected String id, username, avatar, fullName, address, email, role, phoneNumber;
 
-    private String role;
     protected int numPublications;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")

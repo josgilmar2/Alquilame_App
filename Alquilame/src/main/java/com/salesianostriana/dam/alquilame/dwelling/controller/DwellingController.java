@@ -209,7 +209,7 @@ public class DwellingController {
         return new PageDto<>(dwellingService.findAllDwellings(search, pageable));
     }
 
-    @Operation(summary = "Obtiene una provincia por su identificador")
+    @Operation(summary = "Obtiene una vivienda por su identificador")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Se ha obtenido correctamente la vivienda por su identificador",
@@ -703,7 +703,7 @@ public class DwellingController {
                     description = "No se ha encontrado la vivienda de la que se quiere editar su imagen",
                     content = @Content)
     })
-    @PutMapping("/{id}/image")
+    @PostMapping("/{id}/image")
     public OneDwellingResponse editImage(@Parameter(description = "Identificador de la vivienda a la que se le quiere editar la imagen")
                                              @PathVariable Long id,
                                          @RequestPart("file") MultipartFile file,
