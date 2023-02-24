@@ -658,7 +658,7 @@ public class DwellingController {
 
     @Operation(summary = "Edita la imagen de una vivienda obtenida por su identificador")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
+            @ApiResponse(responseCode = "201",
                     description = "Se ha editado correctamente la imagen de la vivienda seleccionada",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = OneDwellingResponse.class),

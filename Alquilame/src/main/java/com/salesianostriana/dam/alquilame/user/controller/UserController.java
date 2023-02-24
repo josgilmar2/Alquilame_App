@@ -493,7 +493,7 @@ public class UserController {
 
     @Operation(summary = "Edita del avatar del usuario autenticado")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
+            @ApiResponse(responseCode = "201",
                     description = "Se ha editado correctamente el avatar del usuario autenticado",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponse.class),
